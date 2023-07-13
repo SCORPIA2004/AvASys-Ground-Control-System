@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainzRhRPK.ui'
+## Form generated from reading UI file 'mainjeiRlR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -15,6 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
     QMenuBar, QPushButton, QSizePolicy, QStackedWidget,
     QStatusBar, QWidget)
@@ -24,6 +25,13 @@ class Ui_MainWindow(object):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1400, 810)
+        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
+        MainWindow.setSizePolicy(sizePolicy)
+        MainWindow.setMinimumSize(QSize(1000, 810))
+        MainWindow.setMaximumSize(QSize(1400, 810))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidget = QStackedWidget(self.centralwidget)
@@ -53,9 +61,10 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.label_4 = QLabel(self.page_2)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setGeometry(QRect(630, 180, 181, 16))
+        self.webEngineView = QWebEngineView(self.page_2)
+        self.webEngineView.setObjectName(u"webEngineView")
+        self.webEngineView.setGeometry(QRect(200, 80, 701, 511))
+        self.webEngineView.setUrl(QUrl(u"about:blank"))
         self.stackedWidget.addWidget(self.page_2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -75,13 +84,12 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.0", None))
         self.passwordLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"admin", None))
         self.usernameLineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"admin", None))
         self.loginButton.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Username:", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"AvASys Ground Control System", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Oh yeah, its all coming together", None))
     # retranslateUi
 

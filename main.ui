@@ -10,8 +10,26 @@
     <height>810</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>810</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1400</width>
+    <height>810</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AvASys v1.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QStackedWidget" name="stackedWidget">
@@ -110,17 +128,19 @@
      </widget>
     </widget>
     <widget class="QWidget" name="page_2">
-     <widget class="QLabel" name="label_4">
+     <widget class="QWebEngineView" name="webEngineView">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>180</y>
-        <width>181</width>
-        <height>16</height>
+        <x>200</x>
+        <y>80</y>
+        <width>701</width>
+        <height>511</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Oh yeah, its all coming together</string>
+      <property name="url">
+       <url>
+        <string>about:blank</string>
+       </url>
       </property>
      </widget>
     </widget>
@@ -138,6 +158,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

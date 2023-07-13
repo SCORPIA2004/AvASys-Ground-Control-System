@@ -1,6 +1,8 @@
 import sys
 from PySide6.QtCore import *
 from PySide6.QtGui import *
+from PySide6.QtQuick import QQuickWindow, QSGRendererInterface
+from PySide6.QtQuickWidgets import QQuickWidget
 from PySide6.QtWidgets import *
 from ui_main import Ui_MainWindow
 
@@ -12,7 +14,8 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.username = ""
         self.password = ""
-        self.ui.stackedWidget.setCurrentIndex(0)
+        # self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.stackedWidget.setCurrentIndex(1)
 
 
         # Start assigning functions to widgets here
@@ -20,6 +23,9 @@ class MainWindow(QMainWindow):
         self.ui.usernameLineEdit.textChanged.connect(self.setUsername)
         self.ui.passwordLineEdit.textChanged.connect(self.setPassword)
 
+        mapView = QQuickWidget()
+        mapView.setSource(QUrl.fromLocalFile("test_qml_box.qml"))
+        self.ui.stackedWidget.addWidget(mapView)
 
     def logUserIn(self):
         if self.username == "admin" and self.password == "admin":
@@ -34,6 +40,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    QQuickWindow.setGraphicsApi(QSGRendererInterface.OpenGL)
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
