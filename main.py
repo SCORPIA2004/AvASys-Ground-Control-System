@@ -1,4 +1,5 @@
 import app
+from loginScreen import LoginScreen
 
-myApp = app.LoginScreen()
+myApp = LoginScreen()
 myApp.mainloop()
