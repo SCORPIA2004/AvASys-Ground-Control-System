@@ -2,21 +2,21 @@ import customtkinter
 from app import MainScreen
 from PIL import Image
 
-
 class LoginScreen(customtkinter.CTk):
     # noinspection PyUnusedLocal
-    def __init__(self, *args, **kwargs):
+    def __init__(self, version, *args, **kwargs):
         super().__init__(**kwargs)
         self.isAttempted = False
         self.geometry(f"{400}x{600}")
-        self.title("Neo Stellar Ground Controller v1.0b")
+        self.title(version)
         self.resizable(False, False)
 
         def get_input():
             user_input = login_name.get()
             user_pass = login_password.get()
 
-            if user_input == "admin" and user_pass == "admin":
+            # if user_input == "admin" and user_pass == "admin":
+            if user_input == "" and user_pass == "":
                 print("Login Success")
                 print(f"{user_input}, {user_pass}")
                 open_main_screen(self)
@@ -29,7 +29,7 @@ class LoginScreen(customtkinter.CTk):
 
         def open_main_screen(window):
             if window.toplevel_window is None or not window.toplevel_window.winfo_exists():
-                window.toplevel_window = MainScreen(window)  # create window if its None or destroyed
+                window.toplevel_window = MainScreen(window, version)  # create window if its None or destroyed
             else:
                 window.toplevel_window.focus()  # if window exists focus it
 

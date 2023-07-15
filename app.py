@@ -8,7 +8,7 @@ import serialCom
 
 
 class MainScreen(customtkinter.CTkToplevel):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, version, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # ---------------------------------------- Serial Config
@@ -18,14 +18,14 @@ class MainScreen(customtkinter.CTkToplevel):
                       "57600", "115200"]
 
         # ---------------------------------------- App Config
-        self.title("Neo Stellar AvaSys V1.1")
+        self.title(version)
 
         # ---------------------------------------- Geometry Variables
         self.screen_width = self.winfo_screenwidth()
         self.screen_height = self.winfo_screenheight()
 
-        screenx = self.screen_width - 100
-        screeny = self.screen_height - 100
+        screenx = self.screen_width - 200
+        screeny = self.screen_height - 200
 
         # ---------------------------------------- Geometry Shifting
         # x = (self.screen_width - screenx) // 2
@@ -34,7 +34,7 @@ class MainScreen(customtkinter.CTkToplevel):
         y = 0
 
         # ---------------------------------------- Window Settings
-        self.geometry(f"{screenx}x{screeny}+{x}+{y - 35}")
+        self.geometry(f"{screenx}x{screeny}+{x}+{y}")
         self.resizable(False, False)
 
         # ---------------------------------------- Grid Define
