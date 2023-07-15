@@ -26,12 +26,34 @@ class MainWindow(QMainWindow):
         )
 
         # save map data
+
+        # folium.CircleMarker(
+        #     location=coordinate,
+        #     radius=5,
+        #     popup="Bilkent Hill",
+        #     color="red",
+        #     fill=True,
+        #     fill_color="red"
+        # ).add_to(m)
+        icon_path = "plane.png"
+        icon_size = (50, 50)
+        # custom_icon = folium.features.CustomIcon(icon_path, icon_size=icon_path)
+        custom_icon_html = f'<img src="{icon_path}" style="width:{icon_size[0]}px;height:{icon_size[1]}px;">'
+
+        # folium.Marker(
+        #     location=coordinate,
+        #     popup="Bilkent Hill",
+        #     icon=folium.Icon(location=coordinate, icon=folium.CustomIcon(custom_icon_html))
+        # ).add_to(m)
+
+        folium.Marker(coordinate, icon=folium.DivIcon(html=custom_icon_html)).add_to(m)
+
         data = io.BytesIO()
         m.save(data, close_file=False)
-        
+        html_content = data.getvalue().decode()
 
         mapWebView = QWebEngineView()
-        mapWebView.setHtml(data.getvalue().decode())
+        mapWebView.setHtml(html_content)
 
         layout.addWidget(mapWebView)
 
