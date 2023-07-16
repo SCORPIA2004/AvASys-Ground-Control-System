@@ -71,18 +71,34 @@ QTextEdit {
     </property>
     <widget class="QWidget" name="pageLogin">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="0">
-       <widget class="QLineEdit" name="lineEditUsername">
+      <item row="4" column="0">
+       <widget class="QLineEdit" name="lineEditPassword">
         <property name="maximumSize">
          <size>
           <width>200</width>
           <height>35</height>
          </size>
         </property>
+        <property name="placeholderText">
+         <string>Password</string>
+        </property>
        </widget>
       </item>
       <item row="1" column="0">
        <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="6" column="0">
+       <spacer name="verticalSpacer_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -107,34 +123,38 @@ QTextEdit {
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QLineEdit" name="lineEditPassword">
+      <item row="3" column="0">
+       <widget class="QLineEdit" name="lineEditUsername">
         <property name="maximumSize">
          <size>
           <width>200</width>
           <height>35</height>
          </size>
         </property>
+        <property name="placeholderText">
+         <string>Username</string>
+        </property>
        </widget>
-      </item>
-      <item row="6" column="0">
-       <spacer name="verticalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
     <widget class="QWidget" name="page_2Menu">
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="2" column="0" colspan="4">
+      <item row="0" column="4">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Comm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" rowspan="2">
+       <widget class="QPushButton" name="pushButtonFlightData">
+        <property name="text">
+         <string>Flight Data</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="6">
        <widget class="QStackedWidget" name="stackedWidgetMenu">
         <property name="currentIndex">
          <number>0</number>
@@ -155,34 +175,146 @@ QTextEdit {
            </url>
           </property>
          </widget>
+         <widget class="QPushButton" name="pushButtonMapZoomIn">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>50</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>+</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButtonMapZoomOut">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>80</y>
+            <width>50</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>-</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="pushButtonCurrentLocation">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>140</y>
+            <width>50</width>
+            <height>50</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_1">
+         <widget class="QLabel" name="label_3">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>200</y>
+            <width>121</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Flight data page</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_2">
+         <widget class="QLabel" name="label_4">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>200</y>
+            <width>121</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Setup page</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_4">
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>200</y>
+            <width>121</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Config page</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_5">
+         <widget class="QLabel" name="label_6">
+          <property name="geometry">
+           <rect>
+            <x>410</x>
+            <y>200</y>
+            <width>121</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Help page</string>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton_3">
+      <item row="0" column="1" rowspan="2">
+       <widget class="QPushButton" name="pushButtonSetup">
         <property name="text">
-         <string>PushButton</string>
+         <string>Setup</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="3">
-       <widget class="QPushButton" name="pushButton_2">
+      <item row="1" column="5">
+       <widget class="QComboBox" name="comboBoxSerial"/>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>PushButton</string>
+         <string>Serial</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QPushButton" name="pushButton">
+      <item row="0" column="2" rowspan="2">
+       <widget class="QPushButton" name="pushButtonConfig">
         <property name="text">
-         <string>PushButton</string>
+         <string>Config</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="pushButton_4">
+      <item row="0" column="5">
+       <widget class="QComboBox" name="comboBoxComm">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="2">
+       <widget class="QPushButton" name="pushButtonHelp">
         <property name="text">
-         <string>PushButton</string>
+         <string>Help</string>
         </property>
        </widget>
       </item>
@@ -198,6 +330,20 @@ QTextEdit {
    <header location="global">QtWebEngineWidgets/QWebEngineView</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lineEditUsername</tabstop>
+  <tabstop>lineEditPassword</tabstop>
+  <tabstop>pushButtonLogin</tabstop>
+  <tabstop>pushButtonFlightData</tabstop>
+  <tabstop>pushButtonSetup</tabstop>
+  <tabstop>pushButtonConfig</tabstop>
+  <tabstop>pushButtonHelp</tabstop>
+  <tabstop>pushButtonMapZoomIn</tabstop>
+  <tabstop>comboBoxComm</tabstop>
+  <tabstop>pushButtonMapZoomOut</tabstop>
+  <tabstop>pushButtonCurrentLocation</tabstop>
+  <tabstop>comboBoxSerial</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
