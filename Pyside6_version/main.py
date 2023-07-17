@@ -3,6 +3,7 @@ import io
 import sys
 import csv
 import json
+from emailSender import sendEmail
 from urllib.request import urlopen
 from PySide6.QtWidgets import *
 from ui_main import Ui_MainWindow
@@ -20,6 +21,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.username = ""
         self.password = ""
+        self.email = ""
         self.zoomScale = 100
         self.showMap()
 
@@ -35,6 +37,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonSignupNew.clicked.connect(self.finishSigningUp)
         self.ui.lineEditUsernameNew.textChanged.connect(self.setUsername)
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
+        self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
 
 
         # start assigning functions to menu page widgets here
@@ -56,19 +59,16 @@ class MainWindow(QMainWindow):
                 if self.username == row[0] and self.password == row[1]:
                     # successful login redirect to menu page
                     self.ui.stackedWidgetMain.setCurrentIndex(1)
+                    self.ui.stackedWidgetMenu.setCurrentIndex(0)
                     # show map here, instead of starting, to minimise loading time
                     self.showMap()
-                    # break
                 elif self.username != row[0] and self.password != row[1]:
                     self.ui.labelLoginError.setText("Wrong Username or Password")
-                    # break
                 elif self.username == row[0] and self.password != row[1]:
                     self.ui.labelLoginError.setText("Wrong Password")
-                    # break
                 elif self.username != row[0] and self.password == row[1]:
                     # if no such user exists, show error message
                     self.ui.labelLoginError.setText("Wrong Username")
-                    # break
 
         csv_file.close()
 
@@ -83,6 +83,7 @@ class MainWindow(QMainWindow):
             # write username and password to credentials.csv file
             credentials_writer.writerow([self.username, self.password])
         credentials_file.close()
+        sendEmail(self.email)
         self.ui.stackedWidgetMain.setCurrentIndex(0)
 
     def setUsername(self, s):
@@ -90,6 +91,9 @@ class MainWindow(QMainWindow):
 
     def setPassword(self, s):
         self.password = s
+
+    def setEmail(self, s):
+        self.email = s
 
     def showMap(self):
         # initialise coordiante variable

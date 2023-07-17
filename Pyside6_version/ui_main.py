@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainjBymOT.ui'
+## Form generated from reading UI file 'mainIoCtvC.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -227,36 +227,40 @@ class Ui_MainWindow(object):
         self.page.setObjectName(u"page")
         self.gridLayout_3 = QGridLayout(self.page)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.verticalSpacer_3 = QSpacerItem(20, 224, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.lineEditPasswordNew = QLineEdit(self.page)
+        self.lineEditPasswordNew.setObjectName(u"lineEditPasswordNew")
+        self.lineEditPasswordNew.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout_3.addItem(self.verticalSpacer_3, 0, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEditPasswordNew, 3, 0, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_3, 0, 0, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 60, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_4, 11, 0, 2, 1)
 
         self.lineEditUsernameNew = QLineEdit(self.page)
         self.lineEditUsernameNew.setObjectName(u"lineEditUsernameNew")
         self.lineEditUsernameNew.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout_3.addWidget(self.lineEditUsernameNew, 1, 1, 1, 1)
-
-        self.lineEditPasswordNew = QLineEdit(self.page)
-        self.lineEditPasswordNew.setObjectName(u"lineEditPasswordNew")
-        self.lineEditPasswordNew.setMaximumSize(QSize(200, 35))
-
-        self.gridLayout_3.addWidget(self.lineEditPasswordNew, 2, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEditUsernameNew, 1, 0, 1, 1)
 
         self.pushButtonSignupNew = QPushButton(self.page)
         self.pushButtonSignupNew.setObjectName(u"pushButtonSignupNew")
         self.pushButtonSignupNew.setMaximumSize(QSize(70, 35))
 
-        self.gridLayout_3.addWidget(self.pushButtonSignupNew, 4, 1, 1, 1, Qt.AlignHCenter)
+        self.gridLayout_3.addWidget(self.pushButtonSignupNew, 7, 0, 1, 1, Qt.AlignHCenter)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 60, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.lineEditEmailNew = QLineEdit(self.page)
+        self.lineEditEmailNew.setObjectName(u"lineEditEmailNew")
+        self.lineEditEmailNew.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout_3.addItem(self.verticalSpacer_4, 5, 1, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEditEmailNew, 2, 0, 1, 1)
 
         self.stackedWidgetMain.addWidget(self.page)
         MainWindow.setCentralWidget(self.centralwidget)
-        QWidget.setTabOrder(self.lineEditUsername, self.lineEditPassword)
-        QWidget.setTabOrder(self.lineEditPassword, self.pushButtonLogin)
         QWidget.setTabOrder(self.pushButtonLogin, self.pushButtonFlightData)
         QWidget.setTabOrder(self.pushButtonFlightData, self.pushButtonSetup)
         QWidget.setTabOrder(self.pushButtonSetup, self.pushButtonConfig)
@@ -266,11 +270,18 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.comboBoxComm, self.pushButtonMapZoomOut)
         QWidget.setTabOrder(self.pushButtonMapZoomOut, self.pushButtonCurrentLocation)
         QWidget.setTabOrder(self.pushButtonCurrentLocation, self.comboBoxSerial)
+        QWidget.setTabOrder(self.comboBoxSerial, self.pushButtonSignup)
+        QWidget.setTabOrder(self.pushButtonSignup, self.lineEditUsernameNew)
+        QWidget.setTabOrder(self.lineEditUsernameNew, self.lineEditEmailNew)
+        QWidget.setTabOrder(self.lineEditEmailNew, self.lineEditPasswordNew)
+        QWidget.setTabOrder(self.lineEditPasswordNew, self.lineEditUsername)
+        QWidget.setTabOrder(self.lineEditUsername, self.pushButtonSignupNew)
+        QWidget.setTabOrder(self.pushButtonSignupNew, self.lineEditPassword)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(0)
-        self.stackedWidgetMenu.setCurrentIndex(0)
+        self.stackedWidgetMain.setCurrentIndex(2)
+        self.stackedWidgetMenu.setCurrentIndex(4)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -297,8 +308,9 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
         self.pushButtonConfig.setText(QCoreApplication.translate("MainWindow", u"Config", None))
         self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.lineEditUsernameNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEditPasswordNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
+        self.lineEditPasswordNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Password", None))
+        self.lineEditUsernameNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Username", None))
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
+        self.lineEditEmailNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
     # retranslateUi
 
