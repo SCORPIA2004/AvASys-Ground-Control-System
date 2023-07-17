@@ -3,56 +3,84 @@ import io
 import sys
 import csv
 import json
-from geolocation.main import GoogleMaps
 from urllib.request import urlopen
 from PySide6.QtWidgets import *
-
 from ui_main import Ui_MainWindow
 
 
+
 class MainWindow(QMainWindow):
+
+    # initialise the window with all widgets
     def __init__(self):
-        # Initialising the window
+        # Initialising the window geometry
         super(MainWindow, self).__init__()
         self.m = None
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.username = ""
         self.password = ""
+        self.zoomScale = 100
+        self.showMap()
 
         # Start window at Login page
-        self.ui.stackedWidgetMain.setCurrentIndex(1)
+        self.ui.stackedWidgetMain.setCurrentIndex(0)
+        self.ui.labelLoginError.setText("")
 
         # Start assigning functions to login page widgets here
         self.ui.pushButtonLogin.clicked.connect(self.logUserIn)
         self.ui.lineEditUsername.textChanged.connect(self.setUsername)
         self.ui.lineEditPassword.textChanged.connect(self.setPassword)
+        self.ui.pushButtonSignup.clicked.connect(self.signUpUser)
+        self.ui.pushButtonSignupNew.clicked.connect(self.finishSigningUp)
+        self.ui.lineEditUsernameNew.textChanged.connect(self.setUsername)
+        self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
 
 
         # start assigning functions to menu page widgets here
-        self.showMap()
         self.ui.pushButtonFlightData.clicked.connect(self.gotoFlightDataPage)
         self.ui.pushButtonSetup.clicked.connect(self.gotoSetupPage)
         self.ui.pushButtonConfig.clicked.connect(self.gotoConfigPage)
         self.ui.pushButtonHelp.clicked.connect(self.gotoHelpPage)
 
+        # start assigning functions to map page widgets here
         self.ui.pushButtonMapZoomIn.clicked.connect(self.mapZoomIn)
 
     def logUserIn(self):
-        # open csv file and check if username and password are correct
+        # open csv file
         with open('credentials.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
+            # loop over the rows in the csv file
             for row in csv_reader:
-                # print(f'\t{row[0]} works in the {row[1]} department, and was born in {row[2]}.')
-                # print(f"\trow[0] BUT {self.username}")
                 if self.username == row[0] and self.password == row[1]:
+                    # successful login redirect to menu page
                     self.ui.stackedWidgetMain.setCurrentIndex(1)
-                line_count += 1
+                    # show map here, instead of starting, to minimise loading time
+                    self.showMap()
+                    break
+                elif self.username != row[0] and self.password != row[1]:
+                    self.ui.labelLoginError.setText("Wrong Username or Password")
+                    break
+                elif self.username == row[0] and self.password != row[1]:
+                    self.ui.labelLoginError.setText("Wrong Password")
+                    break
+                elif self.username != row[0] and self.password == row[1]:
+                    # if no such user exists, show error message
+                    self.ui.labelLoginError.setText("Wrong Username")
+                    break
 
-        # if self.username == "admin" and self.password == "admin":
-        #     self.ui.stackedWidgetMain.setCurrentIndex(1)
-        print("No such user")
+    def signUpUser(self):
+        self.ui.stackedWidgetMain.setCurrentIndex(2)
+
+
+    def finishSigningUp(self):
+        # open credentials.csv file for writing
+        with open('credentials.csv', mode='a') as credentials_file:
+            credentials_writer = csv.writer(credentials_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            # write username and password to credentials.csv file
+            credentials_writer.writerow([self.username, self.password])
+        self.ui.stackedWidgetMain.setCurrentIndex(0)
 
     def setUsername(self, s):
         self.username = s
@@ -61,37 +89,45 @@ class MainWindow(QMainWindow):
         self.password = s
 
     def showMap(self):
+        # initialise coordiante variable
         self.coordinate = (0, 0)
         self.getCurrentCoordinates()
 
+        # initialise map
         self.m = folium.Map(
-            title="Bilka hill",
-            zoom_start=100,
-            tiles="Stamen Terrain",
+            title="Flight Map",
+            zoom_start=self.zoomScale,
             location=self.coordinate,
-            zoom_control=True
+            zoom_control=True,
+            # tiles = "Stamen Terrain",
         )
-        # TODO: change the icon of marker to a plane
-        # icon_path = "plane.png"
-        # icon_size = (50, 50)
-        # custom_icon_html = f'<img src="{icon_path}" style="width:{icon_size[0]}px;height:{icon_size[1]}px;">'
-        # folium.Marker(self.coordinate, icon=folium.DivIcon(html=custom_icon_html)).add_to(m)
-        # End of TODO1
+
+        # place plane marker on map
         folium.Marker(
             location=self.coordinate,
-            popup="Bilkent Hill",
-            icon=folium.Icon(color="red", icon="info-sign")
+            popup="Plane",
+            icon=folium.CustomIcon(icon_image="./img/plane.png", icon_size=(50, 50))
         ).add_to(self.m)
 
+        # TESTING
+        # Bind the click event to the map
+        marker = folium.ClickForMarker("<b>Lat:</b> ${lat}<br /><b>Lon:</b> ${lng}")
 
+        self.m.add_child(marker)
+        # self.m.add_child(folium.ClickForMarker("<b>Lat:</b> ${lat}<br /><b>Lon:</b> ${lng}"))
+        # END TESTING
+
+
+        # saves map
         data = io.BytesIO()
         self.m.save(data, close_file=False)
         html_content = data.getvalue().decode()
 
+        # displays map on webEngineViewMap widget in window
         self.ui.webEngineViewMap.setHtml(html_content)
 
     def gotoFlightDataPage(self):
-        self.ui.stackedWidgetMenu.setCurrentIndex(1)
+        self.ui.stackedWidgetMenu.setCurrentIndex(0)
 
     def gotoSetupPage(self):
         self.ui.stackedWidgetMenu.setCurrentIndex(2)
@@ -119,11 +155,13 @@ class MainWindow(QMainWindow):
         print("zoom in")
         # self.ui.webEngineViewMap.page().runJavaScript("map.setZoom(15)")
         self.m = folium.Map(
-            title="Bilka hill",
-            zoom_start=13,
+            title="Flight Map",
+            zoom_start=self.zoomScale - 100,
             location=self.coordinate,
-            zoom_control=True
+            zoom_control=True,
+            # tiles="Stamen Terrain"
         )
+
 
 
 

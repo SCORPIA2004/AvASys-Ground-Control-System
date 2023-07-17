@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainfgwPCJ.ui'
+## Form generated from reading UI file 'mainjBymOT.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -19,12 +19,16 @@ from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
     QSpacerItem, QStackedWidget, QWidget)
+import logo_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1000, 600)
+        icon = QIcon()
+        icon.addFile(u"icon.ico", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"QWidget {\n"
 "    background-color: #222222;\n"
 "    color: #ffffff;\n"
@@ -76,35 +80,52 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.lineEditUsername = QLineEdit(self.pageLogin)
         self.lineEditUsername.setObjectName(u"lineEditUsername")
+        self.lineEditUsername.setMinimumSize(QSize(200, 35))
         self.lineEditUsername.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout.addWidget(self.lineEditUsername, 3, 0, 1, 1)
-
-        self.lineEditPassword = QLineEdit(self.pageLogin)
-        self.lineEditPassword.setObjectName(u"lineEditPassword")
-        self.lineEditPassword.setMaximumSize(QSize(200, 35))
-
-        self.gridLayout.addWidget(self.lineEditPassword, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.lineEditUsername, 3, 0, 1, 1, Qt.AlignHCenter)
 
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer, 1, 0, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_2, 7, 0, 1, 1)
-
         self.pushButtonLogin = QPushButton(self.pageLogin)
         self.pushButtonLogin.setObjectName(u"pushButtonLogin")
+        self.pushButtonLogin.setMinimumSize(QSize(70, 35))
         self.pushButtonLogin.setMaximumSize(QSize(70, 35))
 
         self.gridLayout.addWidget(self.pushButtonLogin, 5, 0, 1, 1, Qt.AlignHCenter)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout.addItem(self.verticalSpacer_2, 8, 0, 1, 1)
+
+        self.lineEditPassword = QLineEdit(self.pageLogin)
+        self.lineEditPassword.setObjectName(u"lineEditPassword")
+        self.lineEditPassword.setMinimumSize(QSize(200, 35))
+        self.lineEditPassword.setMaximumSize(QSize(200, 35))
+
+        self.gridLayout.addWidget(self.lineEditPassword, 4, 0, 1, 1, Qt.AlignHCenter)
+
         self.pushButtonSignup = QPushButton(self.pageLogin)
         self.pushButtonSignup.setObjectName(u"pushButtonSignup")
+        self.pushButtonSignup.setMinimumSize(QSize(70, 35))
         self.pushButtonSignup.setMaximumSize(QSize(70, 35))
 
         self.gridLayout.addWidget(self.pushButtonSignup, 6, 0, 1, 1, Qt.AlignHCenter)
+
+        self.labelLoginError = QLabel(self.pageLogin)
+        self.labelLoginError.setObjectName(u"labelLoginError")
+        self.labelLoginError.setStyleSheet(u"color: red;")
+        self.labelLoginError.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.labelLoginError, 7, 0, 1, 1, Qt.AlignHCenter)
+
+        self.label_7 = QLabel(self.pageLogin)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setMaximumSize(QSize(288, 50))
+
+        self.gridLayout.addWidget(self.label_7, 2, 0, 1, 1)
 
         self.stackedWidgetMain.addWidget(self.pageLogin)
         self.page_2Menu = QWidget()
@@ -248,7 +269,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(1)
+        self.stackedWidgetMain.setCurrentIndex(0)
         self.stackedWidgetMenu.setCurrentIndex(0)
 
 
@@ -258,14 +279,16 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.2", None))
         self.lineEditUsername.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
-        self.lineEditPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.pushButtonLogin.setText(QCoreApplication.translate("MainWindow", u"Login", None))
+        self.lineEditPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.pushButtonSignup.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
+        self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\"/></p></body></html>", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Comm", None))
         self.pushButtonFlightData.setText(QCoreApplication.translate("MainWindow", u"Flight Data", None))
         self.pushButtonMapZoomIn.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.pushButtonMapZoomOut.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u2302", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Flight data page", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Setup page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Config page", None))
