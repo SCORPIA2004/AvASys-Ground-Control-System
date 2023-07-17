@@ -1,8 +1,9 @@
-import folium
+import re
 import io
 import sys
 import csv
 import json
+import folium
 from emailSender import sendEmail
 from urllib.request import urlopen
 from PySide6.QtWidgets import *
@@ -48,6 +49,8 @@ class MainWindow(QMainWindow):
 
         # start assigning functions to map page widgets here
         self.ui.pushButtonMapZoomIn.clicked.connect(self.mapZoomIn)
+        self.ui.pushButtonMinimiseStats.clicked.connect(self.minimiseStats)
+        self.ui.pushButtonSignOut.clicked.connect(self.signOut)
 
     def logUserIn(self):
         # open csv file
@@ -72,9 +75,17 @@ class MainWindow(QMainWindow):
 
         csv_file.close()
 
+    def signOut(self):
+        self.ui.stackedWidgetMain.setCurrentIndex(0)
     def signUpUser(self):
         self.ui.stackedWidgetMain.setCurrentIndex(2)
 
+    def is_valid_gmail(self):
+        # Regular expression pattern for Gmail addresses
+        pattern = r'^[a-zA-Z0-9._%+-]+@gmail.com$'
+
+        # Check if the email matches the pattern
+        return re.match(pattern, self.email)
 
     def finishSigningUp(self):
         # open credentials.csv file for writing
@@ -83,7 +94,10 @@ class MainWindow(QMainWindow):
             # write username and password to credentials.csv file
             credentials_writer.writerow([self.username, self.password])
         credentials_file.close()
-        sendEmail(self.email)
+        if self.is_valid_gmail():
+            sendEmail(self.email)
+        else:
+            print("Invalid email address")
         self.ui.stackedWidgetMain.setCurrentIndex(0)
 
     def setUsername(self, s):
@@ -95,6 +109,13 @@ class MainWindow(QMainWindow):
     def setEmail(self, s):
         self.email = s
 
+    def minimiseStats(self):
+        if self.ui.pushButtonMinimiseStats.text() == "-":
+            self.ui.pushButtonMinimiseStats.setText("+")
+            self.ui.tabWidget.hide()
+        else:
+            self.ui.pushButtonMinimiseStats.setText("-")
+            self.ui.tabWidget.show()
     def showMap(self):
         # initialise coordiante variable
         self.coordinate = (0, 0)
@@ -124,6 +145,22 @@ class MainWindow(QMainWindow):
         # self.m.add_child(folium.ClickForMarker("<b>Lat:</b> ${lat}<br /><b>Lon:</b> ${lng}"))
         # END TESTING
 
+        # Coordinates of restricted fly zones
+        zones = [
+            {"name": "Esenboğa International Airport", "latitude": 40.1167, "longitude": 32.9950},
+            {"name": "Etimesgut Air Base", "latitude": 39.9494, "longitude": 32.6833},
+            {"name": "Akıncı Air Base", "latitude": 40.1397, "longitude": 32.5739}
+        ]
+        for zone in zones:
+            folium.Circle(
+                location=[zone["latitude"], zone["longitude"]],
+                radius=1000,  # Adjust the radius as needed
+                color='red',
+                fill=True,
+                fill_color='red',
+                fill_opacity=0.3,
+                tooltip=zone["name"]
+            ).add_to(self.m)
 
         # saves map
         data = io.BytesIO()

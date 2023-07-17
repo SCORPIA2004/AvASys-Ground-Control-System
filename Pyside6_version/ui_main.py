@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainIoCtvC.ui'
+## Form generated from reading UI file 'mainXRZzdn.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QLabel,
     QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QWidget)
+    QSpacerItem, QStackedWidget, QTabWidget, QWidget)
 import logo_rc
 
 class Ui_MainWindow(object):
@@ -132,15 +132,59 @@ class Ui_MainWindow(object):
         self.page_2Menu.setObjectName(u"page_2Menu")
         self.gridLayout_2 = QGridLayout(self.page_2Menu)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.label = QLabel(self.page_2Menu)
-        self.label.setObjectName(u"label")
+        self.pushButtonHelp = QPushButton(self.page_2Menu)
+        self.pushButtonHelp.setObjectName(u"pushButtonHelp")
 
-        self.gridLayout_2.addWidget(self.label, 0, 4, 1, 1)
+        self.gridLayout_2.addWidget(self.pushButtonHelp, 0, 3, 2, 1)
+
+        self.pushButtonConfig = QPushButton(self.page_2Menu)
+        self.pushButtonConfig.setObjectName(u"pushButtonConfig")
+
+        self.gridLayout_2.addWidget(self.pushButtonConfig, 0, 2, 2, 1)
+
+        self.comboBoxComm = QComboBox(self.page_2Menu)
+        self.comboBoxComm.setObjectName(u"comboBoxComm")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.comboBoxComm.sizePolicy().hasHeightForWidth())
+        self.comboBoxComm.setSizePolicy(sizePolicy1)
+
+        self.gridLayout_2.addWidget(self.comboBoxComm, 0, 5, 1, 1)
+
+        self.pushButtonSetup = QPushButton(self.page_2Menu)
+        self.pushButtonSetup.setObjectName(u"pushButtonSetup")
+
+        self.gridLayout_2.addWidget(self.pushButtonSetup, 0, 1, 2, 1)
+
+        self.comboBoxSerial = QComboBox(self.page_2Menu)
+        self.comboBoxSerial.setObjectName(u"comboBoxSerial")
+
+        self.gridLayout_2.addWidget(self.comboBoxSerial, 1, 5, 1, 1)
+
+        self.label_2 = QLabel(self.page_2Menu)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout_2.addWidget(self.label_2, 1, 4, 1, 1)
 
         self.pushButtonFlightData = QPushButton(self.page_2Menu)
         self.pushButtonFlightData.setObjectName(u"pushButtonFlightData")
 
         self.gridLayout_2.addWidget(self.pushButtonFlightData, 0, 0, 2, 1)
+
+        self.label = QLabel(self.page_2Menu)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout_2.addWidget(self.label, 0, 4, 1, 1)
+
+        self.pushButtonSignOut = QPushButton(self.page_2Menu)
+        self.pushButtonSignOut.setObjectName(u"pushButtonSignOut")
+        sizePolicy.setHeightForWidth(self.pushButtonSignOut.sizePolicy().hasHeightForWidth())
+        self.pushButtonSignOut.setSizePolicy(sizePolicy)
+        self.pushButtonSignOut.setMinimumSize(QSize(10, 0))
+        self.pushButtonSignOut.setMaximumSize(QSize(30, 16777215))
+
+        self.gridLayout_2.addWidget(self.pushButtonSignOut, 0, 6, 1, 1)
 
         self.stackedWidgetMenu = QStackedWidget(self.page_2Menu)
         self.stackedWidgetMenu.setObjectName(u"stackedWidgetMenu")
@@ -153,12 +197,36 @@ class Ui_MainWindow(object):
         self.pushButtonMapZoomIn = QPushButton(self.page_3)
         self.pushButtonMapZoomIn.setObjectName(u"pushButtonMapZoomIn")
         self.pushButtonMapZoomIn.setGeometry(QRect(10, 20, 50, 50))
+        self.pushButtonMapZoomIn.setStyleSheet(u"font-size: 30px")
         self.pushButtonMapZoomOut = QPushButton(self.page_3)
         self.pushButtonMapZoomOut.setObjectName(u"pushButtonMapZoomOut")
         self.pushButtonMapZoomOut.setGeometry(QRect(10, 80, 50, 50))
+        self.pushButtonMapZoomOut.setStyleSheet(u"font-size: 30px")
         self.pushButtonCurrentLocation = QPushButton(self.page_3)
         self.pushButtonCurrentLocation.setObjectName(u"pushButtonCurrentLocation")
         self.pushButtonCurrentLocation.setGeometry(QRect(10, 140, 50, 50))
+        self.pushButtonCurrentLocation.setStyleSheet(u"font-size: 30px")
+        self.tabWidget = QTabWidget(self.page_3)
+        self.tabWidget.setObjectName(u"tabWidget")
+        self.tabWidget.setGeometry(QRect(10, 230, 231, 251))
+        self.tabWidget.setStyleSheet(u"")
+        self.stats = QWidget()
+        self.stats.setObjectName(u"stats")
+        self.label_8 = QLabel(self.stats)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(10, 10, 133, 201))
+        self.label_9 = QLabel(self.stats)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(160, 10, 61, 201))
+        self.label_9.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_9.setMargin(10)
+        self.tabWidget.addTab(self.stats, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName(u"tab_2")
+        self.tabWidget.addTab(self.tab_2, "")
+        self.pushButtonMinimiseStats = QPushButton(self.page_3)
+        self.pushButtonMinimiseStats.setObjectName(u"pushButtonMinimiseStats")
+        self.pushButtonMinimiseStats.setGeometry(QRect(10, 479, 31, 31))
         self.stackedWidgetMenu.addWidget(self.page_3)
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
@@ -185,42 +253,7 @@ class Ui_MainWindow(object):
         self.label_6.setGeometry(QRect(410, 200, 121, 21))
         self.stackedWidgetMenu.addWidget(self.page_5)
 
-        self.gridLayout_2.addWidget(self.stackedWidgetMenu, 2, 0, 1, 6)
-
-        self.pushButtonSetup = QPushButton(self.page_2Menu)
-        self.pushButtonSetup.setObjectName(u"pushButtonSetup")
-
-        self.gridLayout_2.addWidget(self.pushButtonSetup, 0, 1, 2, 1)
-
-        self.comboBoxSerial = QComboBox(self.page_2Menu)
-        self.comboBoxSerial.setObjectName(u"comboBoxSerial")
-
-        self.gridLayout_2.addWidget(self.comboBoxSerial, 1, 5, 1, 1)
-
-        self.label_2 = QLabel(self.page_2Menu)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout_2.addWidget(self.label_2, 1, 4, 1, 1)
-
-        self.pushButtonConfig = QPushButton(self.page_2Menu)
-        self.pushButtonConfig.setObjectName(u"pushButtonConfig")
-
-        self.gridLayout_2.addWidget(self.pushButtonConfig, 0, 2, 2, 1)
-
-        self.comboBoxComm = QComboBox(self.page_2Menu)
-        self.comboBoxComm.setObjectName(u"comboBoxComm")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.comboBoxComm.sizePolicy().hasHeightForWidth())
-        self.comboBoxComm.setSizePolicy(sizePolicy1)
-
-        self.gridLayout_2.addWidget(self.comboBoxComm, 0, 5, 1, 1)
-
-        self.pushButtonHelp = QPushButton(self.page_2Menu)
-        self.pushButtonHelp.setObjectName(u"pushButtonHelp")
-
-        self.gridLayout_2.addWidget(self.pushButtonHelp, 0, 3, 2, 1)
+        self.gridLayout_2.addWidget(self.stackedWidgetMenu, 2, 0, 1, 7)
 
         self.stackedWidgetMain.addWidget(self.page_2Menu)
         self.page = QWidget()
@@ -231,33 +264,42 @@ class Ui_MainWindow(object):
         self.lineEditPasswordNew.setObjectName(u"lineEditPasswordNew")
         self.lineEditPasswordNew.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout_3.addWidget(self.lineEditPasswordNew, 3, 0, 1, 1)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
-
-        self.gridLayout_3.addItem(self.verticalSpacer_3, 0, 0, 1, 1)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 60, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout_3.addItem(self.verticalSpacer_4, 11, 0, 2, 1)
-
-        self.lineEditUsernameNew = QLineEdit(self.page)
-        self.lineEditUsernameNew.setObjectName(u"lineEditUsernameNew")
-        self.lineEditUsernameNew.setMaximumSize(QSize(200, 35))
-
-        self.gridLayout_3.addWidget(self.lineEditUsernameNew, 1, 0, 1, 1)
-
-        self.pushButtonSignupNew = QPushButton(self.page)
-        self.pushButtonSignupNew.setObjectName(u"pushButtonSignupNew")
-        self.pushButtonSignupNew.setMaximumSize(QSize(70, 35))
-
-        self.gridLayout_3.addWidget(self.pushButtonSignupNew, 7, 0, 1, 1, Qt.AlignHCenter)
+        self.gridLayout_3.addWidget(self.lineEditPasswordNew, 3, 3, 1, 1)
 
         self.lineEditEmailNew = QLineEdit(self.page)
         self.lineEditEmailNew.setObjectName(u"lineEditEmailNew")
         self.lineEditEmailNew.setMaximumSize(QSize(200, 35))
 
-        self.gridLayout_3.addWidget(self.lineEditEmailNew, 2, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEditEmailNew, 2, 3, 1, 1)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 200, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_3, 0, 3, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 60, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_3.addItem(self.verticalSpacer_4, 11, 3, 2, 1)
+
+        self.lineEditUsernameNew = QLineEdit(self.page)
+        self.lineEditUsernameNew.setObjectName(u"lineEditUsernameNew")
+        self.lineEditUsernameNew.setMaximumSize(QSize(200, 35))
+
+        self.gridLayout_3.addWidget(self.lineEditUsernameNew, 1, 3, 1, 1)
+
+        self.pushButtonSignupNew = QPushButton(self.page)
+        self.pushButtonSignupNew.setObjectName(u"pushButtonSignupNew")
+        self.pushButtonSignupNew.setMinimumSize(QSize(70, 0))
+        self.pushButtonSignupNew.setMaximumSize(QSize(70, 35))
+
+        self.gridLayout_3.addWidget(self.pushButtonSignupNew, 7, 3, 1, 1, Qt.AlignHCenter)
+
+        self.pushButtonBackToLogin = QPushButton(self.page)
+        self.pushButtonBackToLogin.setObjectName(u"pushButtonBackToLogin")
+        sizePolicy.setHeightForWidth(self.pushButtonBackToLogin.sizePolicy().hasHeightForWidth())
+        self.pushButtonBackToLogin.setSizePolicy(sizePolicy)
+        self.pushButtonBackToLogin.setMinimumSize(QSize(70, 0))
+
+        self.gridLayout_3.addWidget(self.pushButtonBackToLogin, 8, 3, 1, 1, Qt.AlignHCenter)
 
         self.stackedWidgetMain.addWidget(self.page)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -280,8 +322,9 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(2)
-        self.stackedWidgetMenu.setCurrentIndex(4)
+        self.stackedWidgetMain.setCurrentIndex(1)
+        self.stackedWidgetMenu.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -295,22 +338,38 @@ class Ui_MainWindow(object):
         self.pushButtonSignup.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
         self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\"/></p></body></html>", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Comm", None))
+        self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.pushButtonConfig.setText(QCoreApplication.translate("MainWindow", u"Config", None))
+        self.pushButtonSetup.setText(QCoreApplication.translate("MainWindow", u"Setup", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
         self.pushButtonFlightData.setText(QCoreApplication.translate("MainWindow", u"Flight Data", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Comm", None))
+        self.pushButtonSignOut.setText(QCoreApplication.translate("MainWindow", u"\u2300", None))
         self.pushButtonMapZoomIn.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.pushButtonMapZoomOut.setText(QCoreApplication.translate("MainWindow", u"-", None))
-        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u2302", None))
+        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u25cb", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">Altitude (m):</span></p><p><span style=\" font-size:11pt;\">Groundspeed(m/s):</span></p><p><span style=\" font-size:11pt;\">Dist to WP (m):</span></p><p><span style=\" font-size:11pt;\">Yaw (deg):</span></p><p><span style=\" font-size:11pt;\">Vertical Speed (m/s):</span></p><p><span style=\" font-size:11pt;\">DistToMAV (m): </span></p></body></html>", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/>\n"
+"<body>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"<p><span style=\" font-size:11pt;\">0</span></p>\n"
+"</body>\n"
+"</html>", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.stats), QCoreApplication.translate("MainWindow", u"stats", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Other", None))
+        self.pushButtonMinimiseStats.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Flight data page", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Setup page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Config page", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Help page", None))
-        self.pushButtonSetup.setText(QCoreApplication.translate("MainWindow", u"Setup", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
-        self.pushButtonConfig.setText(QCoreApplication.translate("MainWindow", u"Config", None))
-        self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.lineEditPasswordNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Password", None))
+        self.lineEditEmailNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
         self.lineEditUsernameNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Username", None))
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
-        self.lineEditEmailNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
+        self.pushButtonBackToLogin.setText(QCoreApplication.translate("MainWindow", u"Back", None))
     # retranslateUi
 
