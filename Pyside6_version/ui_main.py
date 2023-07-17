@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainXRZzdn.ui'
+## Form generated from reading UI file 'mainuTnMdf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -16,16 +16,17 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTabWidget, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTabWidget,
+    QWidget)
 import logo_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1000, 600)
+        MainWindow.resize(1000, 640)
         icon = QIcon()
         icon.addFile(u"icon.ico", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -68,7 +69,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.stackedWidgetMain = QStackedWidget(self.centralwidget)
         self.stackedWidgetMain.setObjectName(u"stackedWidgetMain")
-        self.stackedWidgetMain.setGeometry(QRect(0, 0, 1000, 600))
+        self.stackedWidgetMain.setGeometry(QRect(0, 40, 1000, 600))
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -88,6 +89,19 @@ class Ui_MainWindow(object):
         self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer, 1, 0, 1, 1)
+
+        self.labelLoginError = QLabel(self.pageLogin)
+        self.labelLoginError.setObjectName(u"labelLoginError")
+        self.labelLoginError.setStyleSheet(u"color: red;")
+        self.labelLoginError.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.labelLoginError, 7, 0, 1, 1, Qt.AlignHCenter)
+
+        self.label_7 = QLabel(self.pageLogin)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setMaximumSize(QSize(288, 50))
+
+        self.gridLayout.addWidget(self.label_7, 2, 0, 1, 1)
 
         self.pushButtonLogin = QPushButton(self.pageLogin)
         self.pushButtonLogin.setObjectName(u"pushButtonLogin")
@@ -113,19 +127,6 @@ class Ui_MainWindow(object):
         self.pushButtonSignup.setMaximumSize(QSize(70, 35))
 
         self.gridLayout.addWidget(self.pushButtonSignup, 6, 0, 1, 1, Qt.AlignHCenter)
-
-        self.labelLoginError = QLabel(self.pageLogin)
-        self.labelLoginError.setObjectName(u"labelLoginError")
-        self.labelLoginError.setStyleSheet(u"color: red;")
-        self.labelLoginError.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.labelLoginError, 7, 0, 1, 1, Qt.AlignHCenter)
-
-        self.label_7 = QLabel(self.pageLogin)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setMaximumSize(QSize(288, 50))
-
-        self.gridLayout.addWidget(self.label_7, 2, 0, 1, 1)
 
         self.stackedWidgetMain.addWidget(self.pageLogin)
         self.page_2Menu = QWidget()
@@ -302,6 +303,32 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.pushButtonBackToLogin, 8, 3, 1, 1, Qt.AlignHCenter)
 
         self.stackedWidgetMain.addWidget(self.page)
+        self.frameHeader = QFrame(self.centralwidget)
+        self.frameHeader.setObjectName(u"frameHeader")
+        self.frameHeader.setGeometry(QRect(0, 0, 1000, 40))
+        self.frameHeader.setStyleSheet(u"background-color: rgb(22,22,22);")
+        self.frameHeader.setFrameShape(QFrame.StyledPanel)
+        self.frameHeader.setFrameShadow(QFrame.Raised)
+        self.label_10 = QLabel(self.frameHeader)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setGeometry(QRect(427, 10, 144, 24))
+        self.label_10.setMaximumSize(QSize(288, 50))
+        self.label_11 = QLabel(self.frameHeader)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setGeometry(QRect(20, 10, 281, 21))
+        font = QFont()
+        font.setFamilies([u"Roboto"])
+        self.label_11.setFont(font)
+        self.label_11.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
+        self.pushButtonExit = QPushButton(self.frameHeader)
+        self.pushButtonExit.setObjectName(u"pushButtonExit")
+        self.pushButtonExit.setGeometry(QRect(965, 5, 31, 30))
+        self.pushButtonExit.setAutoFillBackground(False)
+        self.pushButtonExit.setStyleSheet(u"color: #222222;")
+        icon1 = QIcon()
+        icon1.addFile(u"img/exit.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButtonExit.setIcon(icon1)
+        self.pushButtonExit.setIconSize(QSize(24, 24))
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.pushButtonLogin, self.pushButtonFlightData)
         QWidget.setTabOrder(self.pushButtonFlightData, self.pushButtonSetup)
@@ -322,7 +349,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(1)
+        self.stackedWidgetMain.setCurrentIndex(0)
         self.stackedWidgetMenu.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
@@ -333,11 +360,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.2", None))
         self.lineEditUsername.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Username", None))
+        self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\"/></p></body></html>", None))
         self.pushButtonLogin.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.lineEditPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.pushButtonSignup.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
-        self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\"/></p></body></html>", None))
         self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.pushButtonConfig.setText(QCoreApplication.translate("MainWindow", u"Config", None))
         self.pushButtonSetup.setText(QCoreApplication.translate("MainWindow", u"Setup", None))
@@ -371,5 +398,8 @@ class Ui_MainWindow(object):
         self.lineEditUsernameNew.setPlaceholderText(QCoreApplication.translate("MainWindow", u"New Username", None))
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
         self.pushButtonBackToLogin.setText(QCoreApplication.translate("MainWindow", u"Back", None))
+        self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\" width=\"144\" height=\"24\"></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2</span></p></body></html>", None))
+        self.pushButtonExit.setText("")
     # retranslateUi
 

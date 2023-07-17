@@ -4,9 +4,11 @@ import sys
 import csv
 import json
 import folium
+from PySide6.QtCore import Qt, QCoreApplication
+
 from emailSender import sendEmail
 from urllib.request import urlopen
-from PySide6.QtWidgets import *
+from PySide6.QtWidgets import QMainWindow, QApplication
 from ui_main import Ui_MainWindow
 
 
@@ -17,12 +19,15 @@ class MainWindow(QMainWindow):
     def __init__(self):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
+        self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setAttribute(Qt.WA_TranslucentBackground)
         self.m = None
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.username = ""
         self.password = ""
         self.email = ""
+        self.dragPos = 0
         self.zoomScale = 100
         self.showMap()
 
@@ -39,6 +44,8 @@ class MainWindow(QMainWindow):
         self.ui.lineEditUsernameNew.textChanged.connect(self.setUsername)
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
         self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
+        self.ui.pushButtonExit.clicked.connect(QCoreApplication.instance().quit)
+        self.ui.frameHeader.mouseMoveEvent = self.moveWindow
 
 
         # start assigning functions to menu page widgets here
@@ -78,12 +85,14 @@ class MainWindow(QMainWindow):
     def signOut(self):
         self.ui.stackedWidgetMain.setCurrentIndex(0)
         self.ui.labelLoginError.setText("Signed Out")
+
     def signUpUser(self):
         self.ui.stackedWidgetMain.setCurrentIndex(2)
 
     def is_valid_gmail(self):
         # Regular expression pattern for Gmail addresses
-        pattern = r'^[a-zA-Z0-9._%+-]+@gmail.com$'
+        # pattern = r'^[a-zA-Z0-9._%+-]+@gmail.com$'
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
         # Check if the email matches the pattern
         return re.match(pattern, self.email)
@@ -117,6 +126,7 @@ class MainWindow(QMainWindow):
         else:
             self.ui.pushButtonMinimiseStats.setText("-")
             self.ui.tabWidget.show()
+
     def showMap(self):
         # initialise coordiante variable
         self.coordinate = (0, 0)
@@ -141,7 +151,6 @@ class MainWindow(QMainWindow):
         # TESTING
         # Bind the click event to the map
         marker = folium.ClickForMarker("<b>Lat:</b> ${lat}<br /><b>Lon:</b> ${lng}")
-
         self.m.add_child(marker)
         # self.m.add_child(folium.ClickForMarker("<b>Lat:</b> ${lat}<br /><b>Lon:</b> ${lng}"))
         # END TESTING
@@ -155,7 +164,7 @@ class MainWindow(QMainWindow):
         for zone in zones:
             folium.Circle(
                 location=[zone["latitude"], zone["longitude"]],
-                radius=1000,  # Adjust the radius as needed
+                radius=2000,  # Adjust the radius as needed
                 color='red',
                 fill=True,
                 fill_color='red',
@@ -167,6 +176,7 @@ class MainWindow(QMainWindow):
         data = io.BytesIO()
         self.m.save(data, close_file=False)
         html_content = data.getvalue().decode()
+        self.m.get_root().script.get_root().render()
 
         # displays map on webEngineViewMap widget in window
         self.ui.webEngineViewMap.setHtml(html_content)
@@ -207,7 +217,16 @@ class MainWindow(QMainWindow):
             # tiles="Stamen Terrain"
         )
 
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPosition().toPoint()
 
+    def moveWindow(self, event):
+        if(True):
+            # IF LEFT CLICK MOVE WINDOW
+            if event.buttons() == Qt.LeftButton:
+                self.move(self.pos() + event.globalPosition().toPoint() - self.dragPos)
+                self.dragPos = event.globalPosition().toPoint()
+                event.accept()
 
 
 if __name__ == "__main__":
