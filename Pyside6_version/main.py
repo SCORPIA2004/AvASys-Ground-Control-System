@@ -58,17 +58,19 @@ class MainWindow(QMainWindow):
                     self.ui.stackedWidgetMain.setCurrentIndex(1)
                     # show map here, instead of starting, to minimise loading time
                     self.showMap()
-                    break
+                    # break
                 elif self.username != row[0] and self.password != row[1]:
                     self.ui.labelLoginError.setText("Wrong Username or Password")
-                    break
+                    # break
                 elif self.username == row[0] and self.password != row[1]:
                     self.ui.labelLoginError.setText("Wrong Password")
-                    break
+                    # break
                 elif self.username != row[0] and self.password == row[1]:
                     # if no such user exists, show error message
                     self.ui.labelLoginError.setText("Wrong Username")
-                    break
+                    # break
+
+        csv_file.close()
 
     def signUpUser(self):
         self.ui.stackedWidgetMain.setCurrentIndex(2)
@@ -76,10 +78,11 @@ class MainWindow(QMainWindow):
 
     def finishSigningUp(self):
         # open credentials.csv file for writing
-        with open('credentials.csv', mode='a') as credentials_file:
+        with open('credentials.csv', mode='a', newline='') as credentials_file:
             credentials_writer = csv.writer(credentials_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             # write username and password to credentials.csv file
             credentials_writer.writerow([self.username, self.password])
+        credentials_file.close()
         self.ui.stackedWidgetMain.setCurrentIndex(0)
 
     def setUsername(self, s):
