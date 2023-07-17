@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainxVilpA.ui'
+## Form generated from reading UI file 'mainfgwPCJ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -248,7 +248,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(0)
+        self.stackedWidgetMain.setCurrentIndex(1)
         self.stackedWidgetMenu.setCurrentIndex(0)
 
 
