@@ -77,6 +77,7 @@ class MainWindow(QMainWindow):
 
     def signOut(self):
         self.ui.stackedWidgetMain.setCurrentIndex(0)
+        self.ui.labelLoginError.setText("Signed Out")
     def signUpUser(self):
         self.ui.stackedWidgetMain.setCurrentIndex(2)
 
