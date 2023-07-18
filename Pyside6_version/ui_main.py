@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainxOLiOt.ui'
+## Form generated from reading UI file 'mainNVXquZ.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -81,15 +81,15 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.pushButtonLogin = QPushButton(self.pageLogin)
         self.pushButtonLogin.setObjectName(u"pushButtonLogin")
-        self.pushButtonLogin.setMinimumSize(QSize(70, 35))
-        self.pushButtonLogin.setMaximumSize(QSize(70, 35))
+        self.pushButtonLogin.setMinimumSize(QSize(70, 40))
+        self.pushButtonLogin.setMaximumSize(QSize(70, 40))
 
         self.gridLayout.addWidget(self.pushButtonLogin, 5, 0, 1, 1, Qt.AlignHCenter)
 
         self.lineEditPassword = QLineEdit(self.pageLogin)
         self.lineEditPassword.setObjectName(u"lineEditPassword")
-        self.lineEditPassword.setMinimumSize(QSize(200, 37))
-        self.lineEditPassword.setMaximumSize(QSize(200, 35))
+        self.lineEditPassword.setMinimumSize(QSize(200, 40))
+        self.lineEditPassword.setMaximumSize(QSize(200, 40))
 
         self.gridLayout.addWidget(self.lineEditPassword, 4, 0, 1, 1, Qt.AlignHCenter)
 
@@ -102,8 +102,8 @@ class Ui_MainWindow(object):
 
         self.pushButtonSignup = QPushButton(self.pageLogin)
         self.pushButtonSignup.setObjectName(u"pushButtonSignup")
-        self.pushButtonSignup.setMinimumSize(QSize(70, 35))
-        self.pushButtonSignup.setMaximumSize(QSize(70, 35))
+        self.pushButtonSignup.setMinimumSize(QSize(70, 40))
+        self.pushButtonSignup.setMaximumSize(QSize(70, 40))
 
         self.gridLayout.addWidget(self.pushButtonSignup, 6, 0, 1, 1, Qt.AlignHCenter)
 
@@ -113,8 +113,8 @@ class Ui_MainWindow(object):
 
         self.lineEditUsername = QLineEdit(self.pageLogin)
         self.lineEditUsername.setObjectName(u"lineEditUsername")
-        self.lineEditUsername.setMinimumSize(QSize(200, 37))
-        self.lineEditUsername.setMaximumSize(QSize(200, 35))
+        self.lineEditUsername.setMinimumSize(QSize(200, 40))
+        self.lineEditUsername.setMaximumSize(QSize(200, 40))
 
         self.gridLayout.addWidget(self.lineEditUsername, 3, 0, 1, 1, Qt.AlignHCenter)
 
@@ -255,13 +255,15 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.lineEditPasswordNew = QLineEdit(self.page)
         self.lineEditPasswordNew.setObjectName(u"lineEditPasswordNew")
-        self.lineEditPasswordNew.setMaximumSize(QSize(200, 37))
+        self.lineEditPasswordNew.setMinimumSize(QSize(200, 40))
+        self.lineEditPasswordNew.setMaximumSize(QSize(200, 40))
 
         self.gridLayout_3.addWidget(self.lineEditPasswordNew, 3, 3, 1, 1)
 
         self.lineEditEmailNew = QLineEdit(self.page)
         self.lineEditEmailNew.setObjectName(u"lineEditEmailNew")
-        self.lineEditEmailNew.setMaximumSize(QSize(200, 37))
+        self.lineEditEmailNew.setMinimumSize(QSize(200, 40))
+        self.lineEditEmailNew.setMaximumSize(QSize(200, 40))
 
         self.gridLayout_3.addWidget(self.lineEditEmailNew, 2, 3, 1, 1)
 
@@ -275,14 +277,15 @@ class Ui_MainWindow(object):
 
         self.lineEditUsernameNew = QLineEdit(self.page)
         self.lineEditUsernameNew.setObjectName(u"lineEditUsernameNew")
-        self.lineEditUsernameNew.setMaximumSize(QSize(200, 37))
+        self.lineEditUsernameNew.setMinimumSize(QSize(200, 40))
+        self.lineEditUsernameNew.setMaximumSize(QSize(200, 40))
 
         self.gridLayout_3.addWidget(self.lineEditUsernameNew, 1, 3, 1, 1)
 
         self.pushButtonSignupNew = QPushButton(self.page)
         self.pushButtonSignupNew.setObjectName(u"pushButtonSignupNew")
-        self.pushButtonSignupNew.setMinimumSize(QSize(70, 0))
-        self.pushButtonSignupNew.setMaximumSize(QSize(70, 35))
+        self.pushButtonSignupNew.setMinimumSize(QSize(70, 40))
+        self.pushButtonSignupNew.setMaximumSize(QSize(70, 40))
 
         self.gridLayout_3.addWidget(self.pushButtonSignupNew, 7, 3, 1, 1, Qt.AlignHCenter)
 
@@ -290,7 +293,8 @@ class Ui_MainWindow(object):
         self.pushButtonBackToLogin.setObjectName(u"pushButtonBackToLogin")
         sizePolicy.setHeightForWidth(self.pushButtonBackToLogin.sizePolicy().hasHeightForWidth())
         self.pushButtonBackToLogin.setSizePolicy(sizePolicy)
-        self.pushButtonBackToLogin.setMinimumSize(QSize(70, 0))
+        self.pushButtonBackToLogin.setMinimumSize(QSize(70, 40))
+        self.pushButtonBackToLogin.setMaximumSize(QSize(70, 40))
 
         self.gridLayout_3.addWidget(self.pushButtonBackToLogin, 8, 3, 1, 1, Qt.AlignHCenter)
 
@@ -348,7 +352,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(2)
+        self.stackedWidgetMain.setCurrentIndex(0)
         self.stackedWidgetMenu.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
