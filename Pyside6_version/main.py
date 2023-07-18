@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
         self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
         self.ui.pushButtonExit.clicked.connect(QCoreApplication.instance().quit)
-        self.ui.pushButtonMinimize.clicked.connect(self.minimize)
+        self.ui.pushButtonMinimise.clicked.connect(self.minimise)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
 
 
@@ -235,7 +235,7 @@ class MainWindow(QMainWindow):
                 self.dragPos = event.globalPosition().toPoint()
                 event.accept()
 
-    def minimize(self):
+    def minimise(self):
         self.showMinimized()
 
 

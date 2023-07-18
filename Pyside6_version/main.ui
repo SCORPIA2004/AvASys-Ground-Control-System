@@ -665,7 +665,7 @@ QTextEdit {
       </size>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButtonMinimize">
+    <widget class="QPushButton" name="pushButtonMinimise">
      <property name="geometry">
       <rect>
        <x>940</x>
