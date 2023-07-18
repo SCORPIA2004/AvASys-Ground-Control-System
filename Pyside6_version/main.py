@@ -5,11 +5,12 @@ import csv
 import json
 import folium
 import os.path
-from PySide6.QtCore import Qt, QCoreApplication
+import serialCom
+from ui_main import Ui_MainWindow
 from emailSender import sendEmail
 from urllib.request import urlopen
+from PySide6.QtCore import Qt, QCoreApplication
 from PySide6.QtWidgets import QMainWindow, QApplication
-from ui_main import Ui_MainWindow
 
 
 
@@ -58,6 +59,16 @@ class MainWindow(QMainWindow):
         # start assigning functions to map page widgets here
         self.ui.pushButtonMinimiseStats.clicked.connect(self.minimiseStats)
         self.ui.pushButtonSignOut.clicked.connect(self.signOut)
+
+
+        # COM ports stuff
+        self.portManager = serialCom.COM()
+        self.openPorts = self.portManager.getSerialPorts()
+        self.bauds = ["300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400",
+                      "57600", "115200"]
+
+
+
 
     def logUserIn(self):
         # open csv file
@@ -237,6 +248,14 @@ class MainWindow(QMainWindow):
 
     def minimise(self):
         self.showMinimized()
+
+    def getPortFromCombo(self, event):
+        self.portManager.setSerialPort(event)
+        self.port = event
+
+    def getBaudFromCombo(self, event):
+        self.portManager.setBaudRate(event)
+        self.baud = int(event)
 
 
 if __name__ == "__main__":
