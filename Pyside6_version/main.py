@@ -232,7 +232,7 @@ class MainWindow(QMainWindow):
         lat = data['loc'].split(',')[0]
         lon = data['loc'].split(',')[1]
 
-        print(lat, lon)
+        # print(lat, lon)
         self.coordinate = (float(lat), float(lon))
 
     def mousePressEvent(self, event):
