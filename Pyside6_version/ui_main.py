@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainKxuuLb.ui'
+## Form generated from reading UI file 'mainHhLraD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -197,7 +197,7 @@ class Ui_MainWindow(object):
         self.webEngineViewMap.setUrl(QUrl(u"about:blank"))
         self.pushButtonCurrentLocation = QPushButton(self.page_3)
         self.pushButtonCurrentLocation.setObjectName(u"pushButtonCurrentLocation")
-        self.pushButtonCurrentLocation.setGeometry(QRect(10, 10, 50, 50))
+        self.pushButtonCurrentLocation.setGeometry(QRect(10, 80, 50, 50))
         self.pushButtonCurrentLocation.setStyleSheet(u"font-size: 30px")
         self.tabWidget = QTabWidget(self.page_3)
         self.tabWidget.setObjectName(u"tabWidget")
@@ -295,23 +295,23 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.pushButtonBackToLogin, 8, 3, 1, 1, Qt.AlignHCenter)
 
         self.stackedWidgetMain.addWidget(self.page)
-        self.frame = QFrame(self.centralwidget)
-        self.frame.setObjectName(u"frame")
-        self.frame.setGeometry(QRect(0, 0, 1000, 30))
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.label_10 = QLabel(self.frame)
+        self.frameHeader = QFrame(self.centralwidget)
+        self.frameHeader.setObjectName(u"frameHeader")
+        self.frameHeader.setGeometry(QRect(0, 0, 1000, 30))
+        self.frameHeader.setFrameShape(QFrame.StyledPanel)
+        self.frameHeader.setFrameShadow(QFrame.Raised)
+        self.label_10 = QLabel(self.frameHeader)
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(427, 10, 144, 24))
         self.label_10.setMaximumSize(QSize(288, 50))
-        self.label_11 = QLabel(self.frame)
+        self.label_11 = QLabel(self.frameHeader)
         self.label_11.setObjectName(u"label_11")
         self.label_11.setGeometry(QRect(20, 10, 281, 21))
         font = QFont()
         font.setFamilies([u"Roboto"])
         self.label_11.setFont(font)
         self.label_11.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
-        self.pushButtonExit = QPushButton(self.frame)
+        self.pushButtonExit = QPushButton(self.frameHeader)
         self.pushButtonExit.setObjectName(u"pushButtonExit")
         self.pushButtonExit.setGeometry(QRect(970, 0, 31, 30))
         self.pushButtonExit.setAutoFillBackground(False)
@@ -361,7 +361,7 @@ class Ui_MainWindow(object):
         self.pushButtonFlightData.setText(QCoreApplication.translate("MainWindow", u"Flight Data", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Comm", None))
         self.pushButtonSignOut.setText(QCoreApplication.translate("MainWindow", u"\u2300", None))
-        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u25cb", None))
+        self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u25ce", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">Altitude (m):</span></p><p><span style=\" font-size:11pt;\">Groundspeed(m/s):</span></p><p><span style=\" font-size:11pt;\">Dist to WP (m):</span></p><p><span style=\" font-size:11pt;\">Yaw (deg):</span></p><p><span style=\" font-size:11pt;\">Vertical Speed (m/s):</span></p><p><span style=\" font-size:11pt;\">DistToMAV (m): </span></p></body></html>", None))
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/>\n"
 "<body>\n"
@@ -386,7 +386,7 @@ class Ui_MainWindow(object):
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
         self.pushButtonBackToLogin.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\" width=\"144\" height=\"24\"></p></body></html>", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2</span></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.1</span></p></body></html>", None))
         self.pushButtonExit.setText("")
     # retranslateUi
 

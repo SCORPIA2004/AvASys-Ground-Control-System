@@ -71,7 +71,7 @@ QTextEdit {
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="pageLogin">
      <layout class="QGridLayout" name="gridLayout">
@@ -308,23 +308,7 @@ QTextEdit {
            </url>
           </property>
          </widget>
-         <widget class="QPushButton" name="pushButtonMapZoomIn">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>20</y>
-            <width>50</width>
-            <height>50</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font-size: 30px</string>
-          </property>
-          <property name="text">
-           <string>+</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pushButtonMapZoomOut">
+         <widget class="QPushButton" name="pushButtonCurrentLocation">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -337,23 +321,7 @@ QTextEdit {
            <string notr="true">font-size: 30px</string>
           </property>
           <property name="text">
-           <string>-</string>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="pushButtonCurrentLocation">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>140</y>
-            <width>50</width>
-            <height>50</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">font-size: 30px</string>
-          </property>
-          <property name="text">
-           <string>○</string>
+           <string>◎</string>
           </property>
          </widget>
          <widget class="QTabWidget" name="tabWidget">
@@ -612,7 +580,7 @@ QTextEdit {
      </layout>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frameHeader">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -662,7 +630,7 @@ QTextEdit {
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;AvASys v1.2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; font-weight:700;&quot;&gt;AvASys v1.2.1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -713,9 +681,7 @@ QTextEdit {
   <tabstop>pushButtonSetup</tabstop>
   <tabstop>pushButtonConfig</tabstop>
   <tabstop>pushButtonHelp</tabstop>
-  <tabstop>pushButtonMapZoomIn</tabstop>
   <tabstop>comboBoxComm</tabstop>
-  <tabstop>pushButtonMapZoomOut</tabstop>
   <tabstop>pushButtonCurrentLocation</tabstop>
   <tabstop>comboBoxSerial</tabstop>
   <tabstop>pushButtonSignup</tabstop>

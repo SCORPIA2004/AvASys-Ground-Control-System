@@ -55,7 +55,6 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonHelp.clicked.connect(self.gotoHelpPage)
 
         # start assigning functions to map page widgets here
-        self.ui.pushButtonMapZoomIn.clicked.connect(self.mapZoomIn)
         self.ui.pushButtonMinimiseStats.clicked.connect(self.minimiseStats)
         self.ui.pushButtonSignOut.clicked.connect(self.signOut)
 
@@ -161,7 +160,7 @@ class MainWindow(QMainWindow):
         # place plane marker on map
         folium.Marker(
             location=self.coordinate,
-            popup="Plane",
+            popup="Plane " + str(self.coordinate),
             icon=folium.CustomIcon(icon_image="./img/plane.png", icon_size=(50, 50))
         ).add_to(self.m)
 
@@ -212,7 +211,11 @@ class MainWindow(QMainWindow):
 
     def getCurrentCoordinates(self):
 
-        urlopen("http://ipinfo.io/json")
+        try:
+            urlopen("http://ipinfo.io/json")
+        except:
+            print("No internet connection")
+            return
 
         data = json.load(urlopen("http://ipinfo.io/json"))
 
@@ -221,19 +224,6 @@ class MainWindow(QMainWindow):
 
         print(lat, lon)
         self.coordinate = (float(lat), float(lon))
-
-    def mapZoomIn(self):
-        print("zoom in")
-        # self.ui.webEngineViewMap.page().runJavaScript("map.setZoom(15)")
-        self.m = folium.Map(
-            title="Flight Map",
-            zoom_start=self.zoomScale - 100,
-            location=self.coordinate,
-            zoom_control=True,
-            # tiles="Stamen Terrain"
-        )
-
-
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPosition().toPoint()
