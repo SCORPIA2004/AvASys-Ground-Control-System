@@ -4,8 +4,8 @@ import sys
 import csv
 import json
 import folium
+import os.path
 from PySide6.QtCore import Qt, QCoreApplication
-
 from emailSender import sendEmail
 from urllib.request import urlopen
 from PySide6.QtWidgets import QMainWindow, QApplication
@@ -61,24 +61,41 @@ class MainWindow(QMainWindow):
 
     def logUserIn(self):
         # open csv file
+        # check if credentials.csv exists
+
+        if not os.path.exists('credentials.csv'):
+            # create credentials.csv
+            with open('credentials.csv', 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(["username", "password"])
+                self.ui.labelLoginError.setText("No users exist")
+                file.close()
+
+
         with open('credentials.csv') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
             # loop over the rows in the csv file
+
             for row in csv_reader:
-                if self.username == row[0] and self.password == row[1]:
-                    # successful login redirect to menu page
-                    self.ui.stackedWidgetMain.setCurrentIndex(1)
-                    self.ui.stackedWidgetMenu.setCurrentIndex(0)
-                    # show map here, instead of starting, to minimise loading time
-                    self.showMap()
-                elif self.username != row[0] and self.password != row[1]:
-                    self.ui.labelLoginError.setText("Wrong Username or Password")
-                elif self.username == row[0] and self.password != row[1]:
-                    self.ui.labelLoginError.setText("Wrong Password")
-                elif self.username != row[0] and self.password == row[1]:
-                    # if no such user exists, show error message
-                    self.ui.labelLoginError.setText("Wrong Username")
+                if line_count == 0:
+                    line_count += 1
+                else:
+                    if self.username == row[0] and self.password == row[1]:
+                        # successful login redirect to menu page
+                        self.ui.stackedWidgetMain.setCurrentIndex(1)
+                        self.ui.stackedWidgetMenu.setCurrentIndex(0)
+                        # show map here, instead of starting, to minimise loading time
+                        self.showMap()
+                    elif self.username != row[0] and self.password != row[1]:
+                        self.ui.labelLoginError.setText("Wrong Username or Password")
+                    elif self.username == row[0] and self.password != row[1]:
+                        self.ui.labelLoginError.setText("Wrong Password")
+                    elif self.username != row[0] and self.password == row[1]:
+                        # if no such user exists, show error message
+                        self.ui.labelLoginError.setText("Wrong Username")
+                line_count += 1
+
 
         csv_file.close()
 
@@ -195,7 +212,6 @@ class MainWindow(QMainWindow):
 
     def getCurrentCoordinates(self):
 
-
         urlopen("http://ipinfo.io/json")
 
         data = json.load(urlopen("http://ipinfo.io/json"))
@@ -216,6 +232,8 @@ class MainWindow(QMainWindow):
             zoom_control=True,
             # tiles="Stamen Terrain"
         )
+
+
 
     def mousePressEvent(self, event):
         self.dragPos = event.globalPosition().toPoint()
