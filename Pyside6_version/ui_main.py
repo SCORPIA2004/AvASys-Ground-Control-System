@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainHhLraD.ui'
+## Form generated from reading UI file 'mainTpCOvM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -320,6 +320,15 @@ class Ui_MainWindow(object):
         icon1.addFile(u"img/exit.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButtonExit.setIcon(icon1)
         self.pushButtonExit.setIconSize(QSize(24, 24))
+        self.pushButtonMinimize = QPushButton(self.frameHeader)
+        self.pushButtonMinimize.setObjectName(u"pushButtonMinimize")
+        self.pushButtonMinimize.setGeometry(QRect(940, 0, 31, 30))
+        self.pushButtonMinimize.setAutoFillBackground(False)
+        self.pushButtonMinimize.setStyleSheet(u"color: #222222;")
+        icon2 = QIcon()
+        icon2.addFile(u"img/minimize-window-32.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButtonMinimize.setIcon(icon2)
+        self.pushButtonMinimize.setIconSize(QSize(24, 24))
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.pushButtonLogin, self.pushButtonFlightData)
         QWidget.setTabOrder(self.pushButtonFlightData, self.pushButtonSetup)
@@ -338,7 +347,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidgetMain.setCurrentIndex(1)
+        self.stackedWidgetMain.setCurrentIndex(0)
         self.stackedWidgetMenu.setCurrentIndex(0)
         self.tabWidget.setCurrentIndex(0)
 
@@ -388,5 +397,6 @@ class Ui_MainWindow(object):
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\" width=\"144\" height=\"24\"></p></body></html>", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.1</span></p></body></html>", None))
         self.pushButtonExit.setText("")
+        self.pushButtonMinimize.setText("")
     # retranslateUi
 

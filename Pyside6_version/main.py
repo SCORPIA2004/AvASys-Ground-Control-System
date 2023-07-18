@@ -45,6 +45,7 @@ class MainWindow(QMainWindow):
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
         self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
         self.ui.pushButtonExit.clicked.connect(QCoreApplication.instance().quit)
+        self.ui.pushButtonMinimize.clicked.connect(self.minimize)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
 
 
@@ -213,12 +214,10 @@ class MainWindow(QMainWindow):
 
         try:
             urlopen("http://ipinfo.io/json")
+            data = json.load(urlopen("http://ipinfo.io/json"))
         except:
             print("No internet connection")
             return
-
-        data = json.load(urlopen("http://ipinfo.io/json"))
-
         lat = data['loc'].split(',')[0]
         lon = data['loc'].split(',')[1]
 
@@ -235,6 +234,9 @@ class MainWindow(QMainWindow):
                 self.move(self.pos() + event.globalPosition().toPoint() - self.dragPos)
                 self.dragPos = event.globalPosition().toPoint()
                 event.accept()
+
+    def minimize(self):
+        self.showMinimized()
 
 
 if __name__ == "__main__":
