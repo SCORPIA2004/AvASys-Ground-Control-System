@@ -181,7 +181,7 @@ class MainScreen(customtkinter.CTkToplevel):
 
         console_log = customtkinter.CTkTextbox(subframe_log, width=1600, corner_radius=0)
         console_log.grid(row=0, column=0, sticky="nsew")
-        console_log.insert("0.0", "Güncelleme bulunmadı.")
+        console_log.insert("0.0", "No update found.")
         console_log.configure(state="disabled")
 
         # ---------------------------------------- Handling Closing
