@@ -378,12 +378,17 @@ class MainWindow(QMainWindow):
                     speed = data_dict['speed']
                     angle = data_dict['angle']
 
+                    # Update the GUI
+                    self.ui.labelPlaneStatsDisplay.setText("Latitude:\nLongitude:\nAltitude:\nGroundspeed(m/s):\nAngle (deg):")
+                    self.ui.labelPlaneStats.setText(f"{self.latitude}\n\n{self.longitude}\n\n{altitude}\n\n{speed}\n\n{angle}")
+
                     # Update the plane marker's position
                     self.convert_to_decimal_degrees()
                     self.coordinate = (float(self.latitude), float(self.longitude))
                     print("new coordinates received: ", self.coordinate)
                     self.addPlaneMarker()
-                    time.sleep(5)
+
+                    self.m.save("testing.html")
 
 
 

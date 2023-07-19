@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maineGFKea.ui'
+## Form generated from reading UI file 'mainUfkfpr.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -166,14 +166,14 @@ class Ui_MainWindow(object):
         self.tabWidget.setStyleSheet(u"")
         self.stats = QWidget()
         self.stats.setObjectName(u"stats")
-        self.label_8 = QLabel(self.stats)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setGeometry(QRect(10, 10, 133, 201))
-        self.label_9 = QLabel(self.stats)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setGeometry(QRect(160, 10, 61, 201))
-        self.label_9.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
-        self.label_9.setMargin(10)
+        self.labelPlaneStatsDisplay = QLabel(self.stats)
+        self.labelPlaneStatsDisplay.setObjectName(u"labelPlaneStatsDisplay")
+        self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 133, 201))
+        self.labelPlaneStats = QLabel(self.stats)
+        self.labelPlaneStats.setObjectName(u"labelPlaneStats")
+        self.labelPlaneStats.setGeometry(QRect(160, 10, 61, 201))
+        self.labelPlaneStats.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.labelPlaneStats.setMargin(10)
         self.tabWidget.addTab(self.stats, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
@@ -393,8 +393,8 @@ class Ui_MainWindow(object):
         self.pushButtonFlightData.setText(QCoreApplication.translate("MainWindow", u"Flight Data", None))
         self.pushButtonConfig.setText(QCoreApplication.translate("MainWindow", u"Config", None))
         self.pushButtonCurrentLocation.setText(QCoreApplication.translate("MainWindow", u"\u25ce", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">Altitude (m):</span></p><p><span style=\" font-size:11pt;\">Groundspeed(m/s):</span></p><p><span style=\" font-size:11pt;\">Dist to WP (m):</span></p><p><span style=\" font-size:11pt;\">Yaw (deg):</span></p><p><span style=\" font-size:11pt;\">Vertical Speed (m/s):</span></p><p><span style=\" font-size:11pt;\">DistToMAV (m): </span></p></body></html>", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"<html><head/>\n"
+        self.labelPlaneStatsDisplay.setText("")
+        self.labelPlaneStats.setText(QCoreApplication.translate("MainWindow", u"<html><head/>\n"
 "<body>\n"
 "<p><span style=\" font-size:11pt;\">0</span></p>\n"
 "<p><span style=\" font-size:11pt;\">0</span></p>\n"
