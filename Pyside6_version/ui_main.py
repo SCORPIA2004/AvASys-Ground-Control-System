@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainUfkfpr.ui'
+## Form generated from reading UI file 'mainEuCruO.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -168,10 +168,10 @@ class Ui_MainWindow(object):
         self.stats.setObjectName(u"stats")
         self.labelPlaneStatsDisplay = QLabel(self.stats)
         self.labelPlaneStatsDisplay.setObjectName(u"labelPlaneStatsDisplay")
-        self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 133, 201))
+        self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 111, 201))
         self.labelPlaneStats = QLabel(self.stats)
         self.labelPlaneStats.setObjectName(u"labelPlaneStats")
-        self.labelPlaneStats.setGeometry(QRect(160, 10, 61, 201))
+        self.labelPlaneStats.setGeometry(QRect(140, 10, 81, 201))
         self.labelPlaneStats.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.labelPlaneStats.setMargin(10)
         self.tabWidget.addTab(self.stats, "")

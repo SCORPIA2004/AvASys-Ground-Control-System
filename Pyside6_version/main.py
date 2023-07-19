@@ -76,7 +76,8 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonConnectSerial.clicked.connect(self.connectSerial)
         self.ui.comboBoxCom.currentIndexChanged.connect(self.setPortFromComboBox)
         self.ui.comboBoxBaudrate.currentIndexChanged.connect(self.setBaudFromComboBox)
-
+        self.ui.labelPlaneStatsDisplay.setText("Latitude:\n\nLongitude:\n\nAltitude:\n\nGroundspeed(m/s):\n\nAngle (deg):")
+        self.ui.labelPlaneStats.setText("0\n\n0\n\n0\n\n0\n\n0")
 
         # start assigning functions to menu page widgets here
         self.ui.pushButtonFlightData.clicked.connect(self.gotoFlightDataPage)
@@ -379,7 +380,6 @@ class MainWindow(QMainWindow):
                     angle = data_dict['angle']
 
                     # Update the GUI
-                    self.ui.labelPlaneStatsDisplay.setText("Latitude:\nLongitude:\nAltitude:\nGroundspeed(m/s):\nAngle (deg):")
                     self.ui.labelPlaneStats.setText(f"{self.latitude}\n\n{self.longitude}\n\n{altitude}\n\n{speed}\n\n{angle}")
 
                     # Update the plane marker's position
