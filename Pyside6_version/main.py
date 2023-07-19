@@ -200,11 +200,11 @@ class MainWindow(QMainWindow):
                 tooltip=zone["name"]
             ).add_to(self.m)
 
-        # saves map
+        # saves map as html
         data = io.BytesIO()
         self.m.save(data, close_file=False)
         html_content = data.getvalue().decode()
-        self.m.get_root().script.get_root().render()
+        # self.m.get_root().script.get_root().render()
 
         # displays map on webEngineViewMap widget in window
         self.ui.webEngineViewMap.setHtml(html_content)

@@ -71,7 +71,7 @@ QTextEdit {
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="pageLogin">
      <layout class="QGridLayout" name="gridLayout">
@@ -80,13 +80,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>70</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>70</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -99,13 +99,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>37</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="placeholderText">
@@ -131,13 +131,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>70</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>70</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -163,13 +163,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>200</width>
-          <height>37</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="placeholderText">
@@ -473,10 +473,16 @@ QTextEdit {
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="3" column="3">
        <widget class="QLineEdit" name="lineEditPasswordNew">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>37</height>
+          <height>40</height>
          </size>
         </property>
         <property name="placeholderText">
@@ -486,10 +492,16 @@ QTextEdit {
       </item>
       <item row="2" column="3">
        <widget class="QLineEdit" name="lineEditEmailNew">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>37</height>
+          <height>40</height>
          </size>
         </property>
         <property name="placeholderText">
@@ -528,10 +540,16 @@ QTextEdit {
       </item>
       <item row="1" column="3">
        <widget class="QLineEdit" name="lineEditUsernameNew">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>200</width>
-          <height>37</height>
+          <height>40</height>
          </size>
         </property>
         <property name="placeholderText">
@@ -544,13 +562,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>70</width>
-          <height>0</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>70</width>
-          <height>35</height>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
@@ -569,7 +587,13 @@ QTextEdit {
         <property name="minimumSize">
          <size>
           <width>70</width>
-          <height>0</height>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>40</height>
          </size>
         </property>
         <property name="text">
