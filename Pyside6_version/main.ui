@@ -71,7 +71,7 @@ QTextEdit {
      </sizepolicy>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="pageLogin">
      <layout class="QGridLayout" name="gridLayout">
@@ -207,10 +207,10 @@ QTextEdit {
     </widget>
     <widget class="QWidget" name="page_2Menu">
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="3" rowspan="2">
-       <widget class="QPushButton" name="pushButtonHelp">
+      <item row="0" column="0" rowspan="2">
+       <widget class="QPushButton" name="pushButtonFlightData">
         <property name="text">
-         <string>Help</string>
+         <string>Flight Data</string>
         </property>
        </widget>
       </item>
@@ -221,49 +221,11 @@ QTextEdit {
         </property>
        </widget>
       </item>
-      <item row="0" column="5">
-       <widget class="QComboBox" name="comboBoxComm">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" rowspan="2">
-       <widget class="QPushButton" name="pushButtonSetup">
-        <property name="text">
-         <string>Setup</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="5">
        <widget class="QComboBox" name="comboBoxSerial"/>
       </item>
-      <item row="1" column="4">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Serial</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" rowspan="2">
-       <widget class="QPushButton" name="pushButtonFlightData">
-        <property name="text">
-         <string>Flight Data</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Comm</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="6">
-       <widget class="QPushButton" name="pushButtonSignOut">
+      <item row="1" column="7">
+       <widget class="QPushButton" name="pushButtonUpdateCOMports">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -279,15 +241,18 @@ QTextEdit {
         <property name="maximumSize">
          <size>
           <width>30</width>
-          <height>16777215</height>
+          <height>30</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:15px;</string>
+        </property>
         <property name="text">
-         <string>⌀</string>
+         <string>↺</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="7">
+      <item row="2" column="0" colspan="8">
        <widget class="QStackedWidget" name="stackedWidgetMenu">
         <property name="currentIndex">
          <number>0</number>
@@ -465,6 +430,106 @@ QTextEdit {
           </property>
          </widget>
         </widget>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QComboBox" name="comboBoxComm">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QPushButton" name="pushButtonSignOut">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:15px;</string>
+        </property>
+        <property name="text">
+         <string>⌀</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>70</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Comm</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3" rowspan="2">
+       <widget class="QPushButton" name="pushButtonHelp">
+        <property name="text">
+         <string>Help</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="4">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Serial</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" rowspan="2">
+       <widget class="QPushButton" name="pushButtonSetup">
+        <property name="text">
+         <string>Setup</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QPushButton" name="pushButtonConnectSerial">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>10</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>90</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:15px;</string>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
        </widget>
       </item>
      </layout>

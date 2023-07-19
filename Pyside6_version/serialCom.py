@@ -3,6 +3,9 @@ import serial.tools.list_ports
 import threading
 import time
 
+from PySide6.QtWidgets import QMessageBox
+
+
 # from src.CTkMessagebox import CTkMessagebox
 
 
@@ -80,12 +83,15 @@ class COM:
                         if str(data) == "0x55 Test Beat":
                             self.data_received = True
                             console.configure(state="normal")
-                            console.insert("0.0", "Bağlantı Kuruldu\n")
+                            console.insert("0.0", "Connection Established\n")
+                            QMessageBox.warning(self, "Established","Connection Established")
                             console.configure(state="disabled")
                         else:
                             self.stop_reading()
                             # CTkMessagebox(title="Error", message="Geçersiz mesaj. Bağlantı kapatıldı.",
                             #               icon="cancel")
+                            QMessageBox.warning(self, "TimeOut","Connection timed out")
+
                             break
                     else:
                         strdata = str(data)

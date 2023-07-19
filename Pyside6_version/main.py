@@ -6,12 +6,12 @@ import json
 import folium
 import os.path
 import serialCom
+import serial.tools.list_ports
 from ui_main import Ui_MainWindow
 from emailSender import sendEmail
 from urllib.request import urlopen
 from PySide6.QtCore import Qt, QCoreApplication
-from PySide6.QtWidgets import QMainWindow, QApplication
-
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
 
 
 class MainWindow(QMainWindow):
@@ -30,6 +30,11 @@ class MainWindow(QMainWindow):
         self.email = ""
         self.dragPos = 0
         self.zoomScale = 100
+        self.portManager = serialCom.COM()
+        self.openPorts = self.portManager.getSerialPorts()
+        self.bauds = ["300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400",
+                      "57600", "115200"]
+
         self.showMap()
 
         # Start window at Login page
@@ -48,6 +53,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonExit.clicked.connect(QCoreApplication.instance().quit)
         self.ui.pushButtonMinimise.clicked.connect(self.minimise)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
+        self.ui.pushButtonUpdateCOMports.clicked.connect(self.update_com_ports)
 
 
         # start assigning functions to menu page widgets here
@@ -109,6 +115,8 @@ class MainWindow(QMainWindow):
 
 
         csv_file.close()
+        self.update_com_ports()
+
 
     def signOut(self):
         self.ui.stackedWidgetMain.setCurrentIndex(0)
@@ -257,6 +265,36 @@ class MainWindow(QMainWindow):
         self.portManager.setBaudRate(event)
         self.baud = int(event)
 
+    def connectSerial():
+        if connectButton.cget('text') == "Connect":
+            if not (self.portManager.getSerialPort() is None or self.portManager.getBaudRate() is None):
+                if self.portManager.start_reading(console_log):
+                    connectButton.configure(text="Disconnect")
+            else:
+                CTkMessagebox(title="Port Error", message="Seral Port(COM) or Baudrate(Serial) can't be empty!")
+        else:
+            if self.portManager.stop_reading(console_log):
+                CTkMessagebox(message="Başlantı başarılı bir şekilde kapatıldı!",
+                              icon="check", option_1="Tamam")
+                connectButton.configure(text="Connect")
+            else:
+                CTkMessagebox(title="Error", message="Bağlantı sonlandırılırken bir hata gerçekleşti",
+                              icon="cancel")
+
+    def update_com_ports(self):
+        # Clear the current items in the QComboBox
+        self.ui.comboBoxComm.clear()
+
+        # Get a list of available COM ports
+        com_ports = [port.device for port in serial.tools.list_ports.comports()]
+
+        # Add the COM ports to the QComboBox
+        if not com_ports:
+            # If there are no available COM ports, show a dialog box
+            QMessageBox.warning(self, "No COM Ports", "No COM ports found. Please check your connections and click refresh")
+        else:
+            # Add the COM ports to the QComboBox
+            self.ui.comboBoxComm.addItems(com_ports)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
