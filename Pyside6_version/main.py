@@ -210,12 +210,12 @@ class MainWindow(QMainWindow):
         for zone in zones:
             folium.Circle(
                 location=[zone["latitude"], zone["longitude"]],
-                radius=2000,  # Adjust the radius as needed
+                radius=2000,
                 color='red',
                 fill=True,
                 fill_color='red',
                 fill_opacity=0.3,
-                tooltip=zone["name"]
+                tooltip="NO FLY ZONE: " + zone["name"]
             ).add_to(self.m)
 
         # saves map as html
