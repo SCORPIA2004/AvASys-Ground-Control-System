@@ -30,10 +30,23 @@ class MainWindow(QMainWindow):
         self.email = ""
         self.dragPos = 0
         self.zoomScale = 100
-        self.portManager = serialCom.COM()
-        self.openPorts = self.portManager.getSerialPorts()
+        self.selectedPort = ""
+        self.selectedBaud = -1
+
+
+        # Serial stuff
+        self.serialInst = serial.Serial()
+        self.ports = serial.tools.list_ports.comports()
+        self.portsList = []
+        # for the COM ports list
+        for port in self.ports:
+            self.portsList.append(str(port))
+        self.ui.comboBoxCom.addItems(self.portsList)
+
+        # for the Serial bauds list
         self.bauds = ["300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400",
                       "57600", "115200"]
+        self.ui.comboBoxSerial.addItems(self.bauds)
 
         self.showMap()
 
@@ -54,8 +67,9 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonMinimise.clicked.connect(self.minimise)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
         self.ui.pushButtonUpdateCOMports.clicked.connect(self.update_com_ports)
-        self.ui.comboBoxSerial.addItems(self.bauds)
         self.ui.pushButtonConnectSerial.clicked.connect(self.connectSerial)
+        self.ui.comboBoxCom.currentIndexChanged.connect(self.setPortFromComboBox)
+        self.ui.comboBoxSerial.currentIndexChanged.connect(self.setBaudFromComboBox)
 
 
         # start assigning functions to menu page widgets here
@@ -67,16 +81,6 @@ class MainWindow(QMainWindow):
         # start assigning functions to map page widgets here
         self.ui.pushButtonMinimiseStats.clicked.connect(self.minimiseStats)
         self.ui.pushButtonSignOut.clicked.connect(self.signOut)
-
-
-        # COM ports stuff
-        self.portManager = serialCom.COM()
-        self.openPorts = self.portManager.getSerialPorts()
-        self.bauds = ["300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400",
-                      "57600", "115200"]
-
-
-
 
     def logUserIn(self):
         # open csv file
@@ -260,36 +264,26 @@ class MainWindow(QMainWindow):
     def minimise(self):
         self.showMinimized()
 
-    def getPortFromCombo(self, event):
-        self.portManager.setSerialPort(event)
-        self.port = event
+    def setPortFromComboBox(self):
+        self.selectedPort = self.ui.comboBoxCom.currentText()
+        self.serialInst.port = self.selectedPort
 
-    def getBaudFromCombo(self, event):
-        # self.portManager.setBaudRate(event)
-        # self.baud = int(event)
-        self.portManager.setBaudRate(event)
+    def setBaudFromComboBox(self):
+        self.selectedBaud = int(self.ui.comboBoxCom.currentText())
+        self.serialInst.baudrate = self.selectedBaud
 
     def connectSerial(self):
         print("Testing serial com ports")
-        console_log = ""
         if self.ui.pushButtonConnectSerial.text() == "Connect":
-            if not (self.portManager.getSerialPort() is None or self.portManager.getBaudRate() is None):
-                if self.portManager.start_reading(console_log):
-                    self.ui.pushButtonConnectSerial.configure(text="Disconnect")
+            if not (self.selectedPort is "" or self.selectedBaud is -1):
+                self.serialInst.open()
             else:
                 QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
-        else:
-            if self.portManager.stop_reading(console_log):
-                QMessageBox.warning(self, "Success", "The connection was successfully closed!")
-                self.ui.pushButtonConnectSerial.configure(text="Connect")
-            else:
-                QMessageBox.warning(self, "Port Error", "An error occurred while terminating the connection")
-
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
         print("Refresh pressed")
-        self.ui.comboBoxComm.clear()
+        self.ui.comboBoxCom.clear()
 
         # Get a list of available COM ports
         com_ports = [port.device for port in serial.tools.list_ports.comports()]
@@ -300,10 +294,50 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, "No COM Ports", "No COM ports found. Please check your connections and click refresh")
         else:
             # Add the COM ports to the QComboBox
-            self.ui.comboBoxComm.addItems(com_ports)
+            self.ui.comboBoxCom.addItems(com_ports)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# console_log = ""
+# if self.ui.pushButtonConnectSerial.text() == "Connect":
+#     if not (self.portManager.getSerialPort() is None or self.portManager.getBaudRate() is None):
+#         if self.portManager.start_reading(console_log):
+#             self.ui.pushButtonConnectSerial.configure(text="Disconnect")
+#     else:
+#         QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
+# else:
+#     if self.portManager.stop_reading(console_log):
+#         QMessageBox.warning(self, "Success", "The connection was successfully closed!")
+#         self.ui.pushButtonConnectSerial.configure(text="Connect")
+#     else:
+#         QMessageBox.warning(self, "Port Error", "An error occurred while terminating the connection")

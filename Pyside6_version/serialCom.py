@@ -34,6 +34,7 @@ class COM:
         return self.com_ports
 
     def start_reading(self, console):
+        print("Start Reading")
         try:
             self.serial_port = serial.Serial(self.getSerialPort(), self.getBaudRate(), timeout=1)
             self.read_thread = threading.Thread(target=lambda: self.read_data(console))

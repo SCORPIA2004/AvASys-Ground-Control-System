@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainkqhSMH.ui'
+## Form generated from reading UI file 'maineyrEQh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -209,15 +209,15 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.stackedWidgetMenu, 2, 0, 1, 8)
 
-        self.comboBoxComm = QComboBox(self.page_2Menu)
-        self.comboBoxComm.setObjectName(u"comboBoxComm")
+        self.comboBoxCom = QComboBox(self.page_2Menu)
+        self.comboBoxCom.setObjectName(u"comboBoxCom")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.comboBoxComm.sizePolicy().hasHeightForWidth())
-        self.comboBoxComm.setSizePolicy(sizePolicy1)
+        sizePolicy1.setHeightForWidth(self.comboBoxCom.sizePolicy().hasHeightForWidth())
+        self.comboBoxCom.setSizePolicy(sizePolicy1)
 
-        self.gridLayout_2.addWidget(self.comboBoxComm, 0, 5, 1, 1)
+        self.gridLayout_2.addWidget(self.comboBoxCom, 0, 5, 1, 1)
 
         self.label = QLabel(self.page_2Menu)
         self.label.setObjectName(u"label")
@@ -361,8 +361,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.pushButtonFlightData, self.pushButtonSetup)
         QWidget.setTabOrder(self.pushButtonSetup, self.pushButtonConfig)
         QWidget.setTabOrder(self.pushButtonConfig, self.pushButtonHelp)
-        QWidget.setTabOrder(self.pushButtonHelp, self.comboBoxComm)
-        QWidget.setTabOrder(self.comboBoxComm, self.pushButtonCurrentLocation)
+        QWidget.setTabOrder(self.pushButtonHelp, self.comboBoxCom)
+        QWidget.setTabOrder(self.comboBoxCom, self.pushButtonCurrentLocation)
         QWidget.setTabOrder(self.pushButtonCurrentLocation, self.comboBoxSerial)
         QWidget.setTabOrder(self.comboBoxSerial, self.pushButtonSignup)
         QWidget.setTabOrder(self.pushButtonSignup, self.lineEditUsernameNew)
@@ -411,7 +411,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Setup page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Config page", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Help page", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Comm", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Com", None))
         self.pushButtonUpdateCOMports.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
