@@ -46,7 +46,7 @@ class MainWindow(QMainWindow):
         # for the Serial bauds list
         self.bauds = ["300", "600", "1200", "2400", "4800", "9600", "14400", "19200", "28800", "31250", "38400",
                       "57600", "115200"]
-        self.ui.comboBoxSerial.addItems(self.bauds)
+        self.ui.comboBoxBaudrate.addItems(self.bauds)
 
         self.showMap()
 
@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonUpdateCOMports.clicked.connect(self.update_com_ports)
         self.ui.pushButtonConnectSerial.clicked.connect(self.connectSerial)
         self.ui.comboBoxCom.currentIndexChanged.connect(self.setPortFromComboBox)
-        self.ui.comboBoxSerial.currentIndexChanged.connect(self.setBaudFromComboBox)
+        self.ui.comboBoxBaudrate.currentIndexChanged.connect(self.setBaudFromComboBox)
 
 
         # start assigning functions to menu page widgets here
@@ -269,13 +269,13 @@ class MainWindow(QMainWindow):
         self.serialInst.port = self.selectedPort
 
     def setBaudFromComboBox(self):
-        self.selectedBaud = int(self.ui.comboBoxCom.currentText())
+        self.selectedBaud = int(self.ui.comboBoxBaudrate.currentText())
         self.serialInst.baudrate = self.selectedBaud
 
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
-            if self.selectedPort is "" or self.selectedBaud is -1:
+            if self.selectedPort == "" or self.selectedBaud == -1:
                 QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
             else:
                 self.serialInst.open()
@@ -283,9 +283,27 @@ class MainWindow(QMainWindow):
                     if self.serialInst.in_waiting:
                         print("Serial port connected")
                         self.ui.pushButtonConnectSerial.setText("Disconnect")
-                        self.ui.comboBoxCom.setEnabled(False)
-                        self.ui.comboBoxSerial.setEnabled(False)
-                        break
+                        packet = self.serialInst.readline()
+                        dataString = packet.decode('utf')
+                        print(dataString)
+                        # extract data
+                        if(dataString[0:11] == '{"fix":true'):
+                            data_dict = json.loads(dataString)
+
+                            # Extract the required values
+                            latitude = data_dict['latitude']
+                            longitude = data_dict['longitude']
+                            altitude = data_dict['altitude']
+                            speed = data_dict['speed']
+                            angle = data_dict['angle']
+
+                            # Print the extracted values
+                            print("Latitude:", latitude)
+                            print("Longitude:", longitude)
+                            print("Altitude:", altitude)
+                            print("Speed:", speed)
+                            print("Angle:", angle)
+
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
