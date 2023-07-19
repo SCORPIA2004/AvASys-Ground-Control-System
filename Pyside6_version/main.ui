@@ -280,25 +280,25 @@ QTextEdit {
            <attribute name="title">
             <string>stats</string>
            </attribute>
-           <widget class="QLabel" name="label_8">
+           <widget class="QLabel" name="labelPlaneStatsDisplay">
             <property name="geometry">
              <rect>
               <x>10</x>
               <y>10</y>
-              <width>133</width>
+              <width>111</width>
               <height>201</height>
              </rect>
             </property>
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Altitude (m):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Groundspeed(m/s):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Dist to WP (m):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Yaw (deg):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;Vertical Speed (m/s):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt;DistToMAV (m): &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string/>
             </property>
            </widget>
-           <widget class="QLabel" name="label_9">
+           <widget class="QLabel" name="labelPlaneStats">
             <property name="geometry">
              <rect>
-              <x>160</x>
+              <x>140</x>
               <y>10</y>
-              <width>61</width>
+              <width>81</width>
               <height>201</height>
              </rect>
             </property>
