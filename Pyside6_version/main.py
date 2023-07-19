@@ -3,6 +3,7 @@ import io
 import sys
 import csv
 import json
+import time
 import folium
 import os.path
 import threading
@@ -20,6 +21,10 @@ class MainWindow(QMainWindow):
     def __init__(self):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
+        self.longitude = None
+        self.latitude = None
+        self.marker_layer = None
+        self.coordinate = None
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.m = None
@@ -32,6 +37,7 @@ class MainWindow(QMainWindow):
         self.zoomScale = 100
         self.selectedPort = ""
         self.selectedBaud = -1
+        self.plane_marker = None
 
 
         # Serial stuff
@@ -183,12 +189,10 @@ class MainWindow(QMainWindow):
             # tiles = "Stamen Terrain",
         )
 
-        # place plane marker on map
-        folium.Marker(
-            location=self.coordinate,
-            popup="Plane " + str(self.coordinate),
-            icon=folium.CustomIcon(icon_image="./img/plane.png", icon_size=(50, 50))
-        ).add_to(self.m)
+        # Initialise plane marker on map
+        self.marker_layer = folium.FeatureGroup(name="Markers")
+        self.m.add_child(self.marker_layer)
+        self.addPlaneMarker()
 
         # TESTING
         # Bind the click event to the map
@@ -268,6 +272,48 @@ class MainWindow(QMainWindow):
                 self.dragPos = event.globalPosition().toPoint()
                 event.accept()
 
+    def convert_to_decimal_degrees(self):
+        # Split the latitude string into degrees and decimal minutes
+        degrees_str, minutes_decimal_str = self.latitude.split('.')
+
+        # Convert degrees to integer
+        degrees = int(degrees_str)
+
+        # Convert the decimal part to minutes and seconds
+        decimal_minutes = float("0." + minutes_decimal_str)
+        minutes, seconds = divmod(decimal_minutes * 60, 1)
+
+        # Calculate the total decimal value of degrees and minutes
+        total_decimal = minutes / 60 + seconds / 3600
+
+        # Combine degrees and decimal value of minutes
+        latitude_decimal = degrees + total_decimal
+
+        self.latitude = latitude_decimal
+
+
+        # NOW for Longitude
+        # Split the latitude string into degrees and decimal minutes
+        degrees_str_lon, minutes_decimal_str_lon = self.longitude.split('.')
+
+        # Convert degrees to integer
+        degrees_lon = int(degrees_str_lon)
+
+        # Convert the decimal part to minutes and seconds
+        decimal_minutes_lon = float("0." + minutes_decimal_str_lon)
+        minutes_lon, seconds_lon = divmod(decimal_minutes_lon * 60, 1)
+
+        # Calculate the total decimal value of degrees and minutes
+        total_decimal_lon = minutes_lon / 60 + seconds_lon / 3600
+
+        # Combine degrees and decimal value of minutes
+        longitude_decimal = degrees_lon + total_decimal_lon
+        self.longitude = longitude_decimal
+
+        print("converted to regular lan lon")
+        print(self.latitude)
+        print(self.longitude)
+
     def minimise(self):
         self.showMinimized()
 
@@ -279,6 +325,17 @@ class MainWindow(QMainWindow):
         self.selectedBaud = int(self.ui.comboBoxBaudrate.currentText())
         self.serialInst.baudrate = self.selectedBaud
 
+    def addPlaneMarker(self):
+        self.plane_marker = folium.Marker(
+            location=self.coordinate,
+            popup="Plane " + str(self.coordinate),
+            icon=folium.CustomIcon(icon_image="./img/plane.png", icon_size=(50, 50))
+        )
+        # self.m.add_child(self.plane_marker)
+        self.plane_marker.add_to(self.marker_layer)
+
+    def removeMarker(self):
+        self.marker_layer.get_root().remove_child(self.plane_marker)
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
@@ -298,7 +355,9 @@ class MainWindow(QMainWindow):
         else:
             # Stop the serial port reading thread and close the port
             self.serial_thread.join()
-            self.serialInst.close()
+            # self.serialInst.close()
+            if self.serialInst.isOpen():
+                self.serialInst.close()
             self.ui.pushButtonConnectSerial.setText("Connect")
 
     def readSerialData(self):
@@ -306,25 +365,28 @@ class MainWindow(QMainWindow):
             if self.serialInst.in_waiting:
                 packet = self.serialInst.readline()
                 dataString = packet.decode('utf')
-                print(dataString)
+                # print(dataString)
 
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
                     data_dict = json.loads(dataString)
 
                     # Extract the required values
-                    latitude = data_dict['latitude']
-                    longitude = data_dict['longitude']
+                    self.latitude = str(data_dict['latitude'])
+                    self.longitude = str(data_dict['longitude'])
                     altitude = data_dict['altitude']
                     speed = data_dict['speed']
                     angle = data_dict['angle']
 
-                    # Print the extracted values
-                    print("Latitude:", latitude)
-                    print("Longitude:", longitude)
-                    print("Altitude:", altitude)
-                    print("Speed:", speed)
-                    print("Angle:", angle)
+                    # Update the plane marker's position
+                    self.convert_to_decimal_degrees()
+                    self.coordinate = (float(self.latitude), float(self.longitude))
+                    print("new coordinates received: ", self.coordinate)
+                    self.addPlaneMarker()
+                    time.sleep(5)
+
+
+
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
