@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainvgOlfD.ui'
+## Form generated from reading UI file 'maineGFKea.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -230,7 +230,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.pushButtonUpdateCOMports.sizePolicy().hasHeightForWidth())
         self.pushButtonUpdateCOMports.setSizePolicy(sizePolicy)
         self.pushButtonUpdateCOMports.setMinimumSize(QSize(10, 0))
-        self.pushButtonUpdateCOMports.setMaximumSize(QSize(90, 40))
+        self.pushButtonUpdateCOMports.setMaximumSize(QSize(100, 40))
         self.pushButtonUpdateCOMports.setStyleSheet(u"font-size:15px;")
 
         self.gridLayout_2.addWidget(self.pushButtonUpdateCOMports, 0, 6, 1, 1)
@@ -250,7 +250,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.pushButtonConnectSerial.sizePolicy().hasHeightForWidth())
         self.pushButtonConnectSerial.setSizePolicy(sizePolicy)
         self.pushButtonConnectSerial.setMinimumSize(QSize(10, 0))
-        self.pushButtonConnectSerial.setMaximumSize(QSize(90, 40))
+        self.pushButtonConnectSerial.setMaximumSize(QSize(100, 40))
         self.pushButtonConnectSerial.setStyleSheet(u"font-size:15px;")
 
         self.gridLayout_2.addWidget(self.pushButtonConnectSerial, 1, 6, 1, 1)

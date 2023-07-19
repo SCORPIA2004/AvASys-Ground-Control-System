@@ -5,7 +5,7 @@ import csv
 import json
 import folium
 import os.path
-import serialCom
+import threading
 import serial.tools.list_ports
 from ui_main import Ui_MainWindow
 from emailSender import sendEmail
@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
         self.ui.lineEditUsernameNew.textChanged.connect(self.setUsername)
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
         self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
-        self.ui.pushButtonExit.clicked.connect(QCoreApplication.instance().quit)
+        self.ui.pushButtonExit.clicked.connect(self.exitApp)
         self.ui.pushButtonMinimise.clicked.connect(self.minimise)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
         self.ui.pushButtonUpdateCOMports.clicked.connect(self.update_com_ports)
@@ -123,7 +123,6 @@ class MainWindow(QMainWindow):
 
 
         csv_file.close()
-
 
     def signOut(self):
         self.ui.stackedWidgetMain.setCurrentIndex(0)
@@ -253,6 +252,14 @@ class MainWindow(QMainWindow):
     def mousePressEvent(self, event):
         self.dragPos = event.globalPosition().toPoint()
 
+    def exitApp(self):
+        # Close the serial port if it is open
+        if self.serialInst.isOpen():
+            self.serialInst.close()
+
+        # Quit the application
+        QCoreApplication.quit()
+
     def moveWindow(self, event):
         if(True):
             # IF LEFT CLICK MOVE WINDOW
@@ -278,32 +285,46 @@ class MainWindow(QMainWindow):
             if self.selectedPort == "" or self.selectedBaud == -1:
                 QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
             else:
+                # Open the serial port
+                self.serialInst.port = self.selectedPort
+                self.serialInst.baudrate = self.selectedBaud
                 self.serialInst.open()
-                while True:
-                    if self.serialInst.in_waiting:
-                        print("Serial port connected")
-                        self.ui.pushButtonConnectSerial.setText("Disconnect")
-                        packet = self.serialInst.readline()
-                        dataString = packet.decode('utf')
-                        print(dataString)
-                        # extract data
-                        if(dataString[0:11] == '{"fix":true'):
-                            data_dict = json.loads(dataString)
 
-                            # Extract the required values
-                            latitude = data_dict['latitude']
-                            longitude = data_dict['longitude']
-                            altitude = data_dict['altitude']
-                            speed = data_dict['speed']
-                            angle = data_dict['angle']
+                # Start a new thread for reading from the serial port
+                self.serial_thread = threading.Thread(target=self.readSerialData)
+                self.serial_thread.start()
 
-                            # Print the extracted values
-                            print("Latitude:", latitude)
-                            print("Longitude:", longitude)
-                            print("Altitude:", altitude)
-                            print("Speed:", speed)
-                            print("Angle:", angle)
+                self.ui.pushButtonConnectSerial.setText("Disconnect")
+        else:
+            # Stop the serial port reading thread and close the port
+            self.serial_thread.join()
+            self.serialInst.close()
+            self.ui.pushButtonConnectSerial.setText("Connect")
 
+    def readSerialData(self):
+        while True:
+            if self.serialInst.in_waiting:
+                packet = self.serialInst.readline()
+                dataString = packet.decode('utf')
+                print(dataString)
+
+                # Extract and process data here
+                if dataString[0:11] == '{"fix":true':
+                    data_dict = json.loads(dataString)
+
+                    # Extract the required values
+                    latitude = data_dict['latitude']
+                    longitude = data_dict['longitude']
+                    altitude = data_dict['altitude']
+                    speed = data_dict['speed']
+                    angle = data_dict['angle']
+
+                    # Print the extracted values
+                    print("Latitude:", latitude)
+                    print("Longitude:", longitude)
+                    print("Altitude:", altitude)
+                    print("Speed:", speed)
+                    print("Angle:", angle)
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
@@ -346,7 +367,38 @@ if __name__ == "__main__":
 
 
 
-
+    # def connectSerial(self):
+    #     print("Testing serial com ports")
+    #     if self.ui.pushButtonConnectSerial.text() == "Connect":
+    #         if self.selectedPort == "" or self.selectedBaud == -1:
+    #             QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
+    #         else:
+    #             self.serialInst.open()
+    #             if self.serialInst.in_waiting:
+    #                 print("Serial port connected")
+    #                 self.ui.pushButtonConnectSerial.setText("Disconnect")
+    #                 packet = self.serialInst.readline()
+    #                 dataString = packet.decode('utf')
+    #                 print(dataString)
+    #                 # extract data
+    #                 if(dataString[0:11] == '{"fix":true'):
+    #                     data_dict = json.loads(dataString)
+    #
+    #                     # Extract the required values
+    #                     latitude = data_dict['latitude']
+    #                     longitude = data_dict['longitude']
+    #                     altitude = data_dict['altitude']
+    #                     speed = data_dict['speed']
+    #                     angle = data_dict['angle']
+    #
+    #                     # Print the extracted values
+    #                     print("Latitude:", latitude)
+    #                     print("Longitude:", longitude)
+    #                     print("Altitude:", altitude)
+    #                     print("Speed:", speed)
+    #                     print("Angle:", angle)
+    #
+    #
 
 
 
