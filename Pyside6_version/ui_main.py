@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'maineyrEQh.ui'
+## Form generated from reading UI file 'mainvgOlfD.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -143,10 +143,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.pushButtonConfig, 0, 2, 2, 1)
 
-        self.comboBoxSerial = QComboBox(self.page_2Menu)
-        self.comboBoxSerial.setObjectName(u"comboBoxSerial")
+        self.comboBoxBaudrate = QComboBox(self.page_2Menu)
+        self.comboBoxBaudrate.setObjectName(u"comboBoxBaudrate")
 
-        self.gridLayout_2.addWidget(self.comboBoxSerial, 1, 5, 1, 1)
+        self.gridLayout_2.addWidget(self.comboBoxBaudrate, 1, 5, 1, 1)
 
         self.stackedWidgetMenu = QStackedWidget(self.page_2Menu)
         self.stackedWidgetMenu.setObjectName(u"stackedWidgetMenu")
@@ -363,8 +363,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.pushButtonConfig, self.pushButtonHelp)
         QWidget.setTabOrder(self.pushButtonHelp, self.comboBoxCom)
         QWidget.setTabOrder(self.comboBoxCom, self.pushButtonCurrentLocation)
-        QWidget.setTabOrder(self.pushButtonCurrentLocation, self.comboBoxSerial)
-        QWidget.setTabOrder(self.comboBoxSerial, self.pushButtonSignup)
+        QWidget.setTabOrder(self.pushButtonCurrentLocation, self.comboBoxBaudrate)
+        QWidget.setTabOrder(self.comboBoxBaudrate, self.pushButtonSignup)
         QWidget.setTabOrder(self.pushButtonSignup, self.lineEditUsernameNew)
         QWidget.setTabOrder(self.lineEditUsernameNew, self.lineEditEmailNew)
         QWidget.setTabOrder(self.lineEditEmailNew, self.lineEditPasswordNew)
@@ -414,7 +414,7 @@ class Ui_MainWindow(object):
         self.label.setText(QCoreApplication.translate("MainWindow", u"Com", None))
         self.pushButtonUpdateCOMports.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.pushButtonHelp.setText(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Serial", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Baudrate", None))
         self.pushButtonConnectSerial.setText(QCoreApplication.translate("MainWindow", u"Connect", None))
         self.pushButtonSetup.setText(QCoreApplication.translate("MainWindow", u"Setup", None))
         self.pushButtonSignOut.setText(QCoreApplication.translate("MainWindow", u"\u2300", None))

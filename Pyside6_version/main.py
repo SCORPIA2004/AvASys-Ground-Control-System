@@ -275,10 +275,17 @@ class MainWindow(QMainWindow):
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
-            if not (self.selectedPort is "" or self.selectedBaud is -1):
-                self.serialInst.open()
-            else:
+            if self.selectedPort is "" or self.selectedBaud is -1:
                 QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
+            else:
+                self.serialInst.open()
+                while True:
+                    if self.serialInst.in_waiting:
+                        print("Serial port connected")
+                        self.ui.pushButtonConnectSerial.setText("Disconnect")
+                        self.ui.comboBoxCom.setEnabled(False)
+                        self.ui.comboBoxSerial.setEnabled(False)
+                        break
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
