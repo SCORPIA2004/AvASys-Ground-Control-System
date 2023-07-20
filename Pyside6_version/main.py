@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
+        self.serial_thread = None
         self.longitude = None
         self.latitude = None
         self.marker_layer = None
@@ -337,6 +338,7 @@ class MainWindow(QMainWindow):
 
     def removeMarker(self):
         self.marker_layer.get_root().remove_child(self.plane_marker)
+
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
@@ -366,7 +368,10 @@ class MainWindow(QMainWindow):
             if self.serialInst.in_waiting:
                 packet = self.serialInst.readline()
                 dataString = packet.decode('utf')
-                # print(dataString)
+                print(dataString)
+                if dataString[0:11] != '{"fix":true':
+                    # print("Waiting to stabilise")
+                    print(dataString)
 
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
@@ -383,11 +388,12 @@ class MainWindow(QMainWindow):
                     self.ui.labelPlaneStats.setText(f"{self.latitude}\n\n{self.longitude}\n\n{altitude}\n\n{speed}\n\n{angle}")
 
                     # Update the plane marker's position
+                    # TODO: 1. Why is lat/lon conversion not working?
+                    #       2. Why is the marker not updating on map (re-rendering needed?) ?
                     self.convert_to_decimal_degrees()
                     self.coordinate = (float(self.latitude), float(self.longitude))
                     print("new coordinates received: ", self.coordinate)
                     self.addPlaneMarker()
-
                     self.m.save("testing.html")
 
 
