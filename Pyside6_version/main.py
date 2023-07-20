@@ -315,9 +315,7 @@ class MainWindow(QMainWindow):
 
                 self.ui.pushButtonConnectSerial.setText("Disconnect")
         else:
-            # Stop the serial port reading thread and close the port
-            # self.serial_thread.join()
-            # self.serialInst.close()
+
             if self.serialInst.isOpen():
                 self.serialInst.close()
             self.ui.pushButtonConnectSerial.setText("Connect")
