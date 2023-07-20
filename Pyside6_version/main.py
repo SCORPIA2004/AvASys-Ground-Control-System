@@ -21,6 +21,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
+        self.longitudeConv = None
+        self.latitudeConv = None
         self.serial_thread = None
         self.longitude = None
         self.latitude = None
@@ -274,47 +276,23 @@ class MainWindow(QMainWindow):
                 self.dragPos = event.globalPosition().toPoint()
                 event.accept()
 
-    def convert_to_decimal_degrees(self):
-        # Split the latitude string into degrees and decimal minutes
-        degrees_str, minutes_decimal_str = self.latitude.split('.')
 
-        # Convert degrees to integer
-        degrees = int(degrees_str)
-
-        # Convert the decimal part to minutes and seconds
-        decimal_minutes = float("0." + minutes_decimal_str)
-        minutes, seconds = divmod(decimal_minutes * 60, 1)
-
-        # Calculate the total decimal value of degrees and minutes
-        total_decimal = minutes / 60 + seconds / 3600
-
-        # Combine degrees and decimal value of minutes
-        latitude_decimal = degrees + total_decimal
-
-        self.latitude = latitude_decimal
-
-
-        # NOW for Longitude
-        # Split the latitude string into degrees and decimal minutes
-        degrees_str_lon, minutes_decimal_str_lon = self.longitude.split('.')
-
-        # Convert degrees to integer
-        degrees_lon = int(degrees_str_lon)
-
-        # Convert the decimal part to minutes and seconds
-        decimal_minutes_lon = float("0." + minutes_decimal_str_lon)
-        minutes_lon, seconds_lon = divmod(decimal_minutes_lon * 60, 1)
-
-        # Calculate the total decimal value of degrees and minutes
-        total_decimal_lon = minutes_lon / 60 + seconds_lon / 3600
-
-        # Combine degrees and decimal value of minutes
-        longitude_decimal = degrees_lon + total_decimal_lon
-        self.longitude = longitude_decimal
-
-        print("converted to regular lan lon")
-        print(self.latitude)
-        print(self.longitude)
+    # def convert_to_decimal_degrees(self):
+    #     # for lat
+    #     coord_str = self.latitude
+    #     coord_str = coord_str.strip()
+    #     degrees = float(coord_str[:2])
+    #     minutes_decimal = float(coord_str[2:])
+    #     self.latitudeConv = degrees + minutes_decimal / 60
+    #
+    #     # for lon
+    #     coord_str = self.longitude
+    #     coord_str = coord_str.strip()
+    #     degrees = float(coord_str[:2])
+    #     minutes_decimal = float(coord_str[2:])
+    #     self.longitudeConv = degrees + minutes_decimal / 60
+        
+        
 
     def minimise(self):
         self.showMinimized()
@@ -385,19 +363,20 @@ class MainWindow(QMainWindow):
                     angle = data_dict['angle']
 
                     # Update the GUI
-                    self.ui.labelPlaneStats.setText(f"{self.latitude}\n\n{self.longitude}\n\n{altitude}\n\n{speed}\n\n{angle}")
+                    self.ui.labelPlaneStats.setText(f"{self.latitudeConv}\n\n{self.longitudeConv}\n\n{altitude}\n\n{speed}\n\n{angle}")
 
                     # Update the plane marker's position
                     # TODO: 1. Why is lat/lon conversion not working?
                     #       2. Why is the marker not updating on map (re-rendering needed?) ?
-                    self.convert_to_decimal_degrees()
-                    self.coordinate = (float(self.latitude), float(self.longitude))
+                    # self.convert_to_decimal_degrees()
+                    decimalPlaces = 4
+                    self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
+                    self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
+
+                    self.coordinate = (self.latitudeConv, self.longitudeConv)
                     print("new coordinates received: ", self.coordinate)
                     self.addPlaneMarker()
                     self.m.save("testing.html")
-
-
-
 
     def update_com_ports(self):
         # Clear the current items in the QComboBox
@@ -472,22 +451,3 @@ if __name__ == "__main__":
     #                     print("Angle:", angle)
     #
     #
-
-
-
-
-
-#
-# console_log = ""
-# if self.ui.pushButtonConnectSerial.text() == "Connect":
-#     if not (self.portManager.getSerialPort() is None or self.portManager.getBaudRate() is None):
-#         if self.portManager.start_reading(console_log):
-#             self.ui.pushButtonConnectSerial.configure(text="Disconnect")
-#     else:
-#         QMessageBox.warning(self, "Port Error", "Serial Port(COM) or Baudrate(Serial) can't be empty!")
-# else:
-#     if self.portManager.stop_reading(console_log):
-#         QMessageBox.warning(self, "Success", "The connection was successfully closed!")
-#         self.ui.pushButtonConnectSerial.configure(text="Connect")
-#     else:
-#         QMessageBox.warning(self, "Port Error", "An error occurred while terminating the connection")
