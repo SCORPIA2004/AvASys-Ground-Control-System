@@ -3,7 +3,6 @@ import io
 import sys
 import csv
 import json
-import time
 import folium
 import os.path
 import threading
@@ -276,24 +275,6 @@ class MainWindow(QMainWindow):
                 self.dragPos = event.globalPosition().toPoint()
                 event.accept()
 
-
-    # def convert_to_decimal_degrees(self):
-    #     # for lat
-    #     coord_str = self.latitude
-    #     coord_str = coord_str.strip()
-    #     degrees = float(coord_str[:2])
-    #     minutes_decimal = float(coord_str[2:])
-    #     self.latitudeConv = degrees + minutes_decimal / 60
-    #
-    #     # for lon
-    #     coord_str = self.longitude
-    #     coord_str = coord_str.strip()
-    #     degrees = float(coord_str[:2])
-    #     minutes_decimal = float(coord_str[2:])
-    #     self.longitudeConv = degrees + minutes_decimal / 60
-        
-        
-
     def minimise(self):
         self.showMinimized()
 
@@ -335,7 +316,7 @@ class MainWindow(QMainWindow):
                 self.ui.pushButtonConnectSerial.setText("Disconnect")
         else:
             # Stop the serial port reading thread and close the port
-            self.serial_thread.join()
+            # self.serial_thread.join()
             # self.serialInst.close()
             if self.serialInst.isOpen():
                 self.serialInst.close()
@@ -368,13 +349,13 @@ class MainWindow(QMainWindow):
                     # Update the plane marker's position
                     # TODO: 1. Why is lat/lon conversion not working?
                     #       2. Why is the marker not updating on map (re-rendering needed?) ?
-                    # self.convert_to_decimal_degrees()
+                    # convert to normal lon/lat
                     decimalPlaces = 4
                     self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
                     self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
 
                     self.coordinate = (self.latitudeConv, self.longitudeConv)
-                    print("new coordinates received: ", self.coordinate)
+                    # print("new coordinates received: ", self.coordinate)
                     self.addPlaneMarker()
                     self.m.save("testing.html")
 
