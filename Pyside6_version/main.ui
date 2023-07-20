@@ -266,7 +266,7 @@ QTextEdit {
            <rect>
             <x>10</x>
             <y>230</y>
-            <width>231</width>
+            <width>251</width>
             <height>251</height>
            </rect>
           </property>
@@ -285,7 +285,7 @@ QTextEdit {
              <rect>
               <x>10</x>
               <y>10</y>
-              <width>111</width>
+              <width>141</width>
               <height>201</height>
              </rect>
             </property>
@@ -296,7 +296,7 @@ QTextEdit {
            <widget class="QLabel" name="labelPlaneStats">
             <property name="geometry">
              <rect>
-              <x>140</x>
+              <x>160</x>
               <y>10</y>
               <width>81</width>
               <height>201</height>

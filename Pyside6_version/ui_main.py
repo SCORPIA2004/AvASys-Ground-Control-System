@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainfmPjXW.ui'
+## Form generated from reading UI file 'mainFPFyrU.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -162,16 +162,16 @@ class Ui_MainWindow(object):
         self.pushButtonCurrentLocation.setStyleSheet(u"font-size: 30px")
         self.tabWidget = QTabWidget(self.page_3)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(10, 230, 231, 251))
+        self.tabWidget.setGeometry(QRect(10, 230, 251, 251))
         self.tabWidget.setStyleSheet(u"")
         self.stats = QWidget()
         self.stats.setObjectName(u"stats")
         self.labelPlaneStatsDisplay = QLabel(self.stats)
         self.labelPlaneStatsDisplay.setObjectName(u"labelPlaneStatsDisplay")
-        self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 111, 201))
+        self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 141, 201))
         self.labelPlaneStats = QLabel(self.stats)
         self.labelPlaneStats.setObjectName(u"labelPlaneStats")
-        self.labelPlaneStats.setGeometry(QRect(140, 10, 81, 201))
+        self.labelPlaneStats.setGeometry(QRect(160, 10, 81, 201))
         self.labelPlaneStats.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.labelPlaneStats.setMargin(10)
         self.tabWidget.addTab(self.stats, "")
@@ -330,13 +330,13 @@ class Ui_MainWindow(object):
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(427, 10, 144, 24))
         self.label_10.setMaximumSize(QSize(288, 50))
-        self.label_11 = QLabel(self.frameHeader)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setGeometry(QRect(20, 10, 281, 21))
+        self.labelVersionTitle = QLabel(self.frameHeader)
+        self.labelVersionTitle.setObjectName(u"labelVersionTitle")
+        self.labelVersionTitle.setGeometry(QRect(20, 10, 281, 21))
         font = QFont()
         font.setFamilies([u"Roboto"])
-        self.label_11.setFont(font)
-        self.label_11.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
+        self.labelVersionTitle.setFont(font)
+        self.labelVersionTitle.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
         self.pushButtonExit = QPushButton(self.frameHeader)
         self.pushButtonExit.setObjectName(u"pushButtonExit")
         self.pushButtonExit.setGeometry(QRect(970, 0, 31, 30))
@@ -383,7 +383,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.2", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.2.2", None))
         self.pushButtonLogin.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.lineEditPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
@@ -424,7 +424,7 @@ class Ui_MainWindow(object):
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
         self.pushButtonBackToLogin.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\" width=\"144\" height=\"24\"></p></body></html>", None))
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.1</span></p></body></html>", None))
+        self.labelVersionTitle.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.2</span></p></body></html>", None))
         self.pushButtonExit.setText("")
         self.pushButtonMinimise.setText("")
     # retranslateUi
