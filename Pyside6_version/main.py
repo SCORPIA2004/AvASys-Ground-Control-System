@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
         self.password = ""
         self.email = ""
         self.dragPos = 0
-        self.zoomScale = 100
+        self.zoomScale = 15
         self.selectedPort = ""
         self.selectedBaud = -1
         self.planeMarker = None
@@ -292,6 +292,8 @@ class MainWindow(QMainWindow):
     def removeMarker(self):
         self.markerLayer.get_root().remove_child(self.planeMarker)
 
+
+
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
@@ -306,13 +308,32 @@ class MainWindow(QMainWindow):
                 # Start a new thread for reading from the serial port
                 self.serialThread = threading.Thread(target=self.readSerialData)
                 self.serialThread.start()
-
                 self.ui.pushButtonConnectSerial.setText("Disconnect")
         else:
-
             if self.serialInst.isOpen():
                 self.serialInst.close()
             self.ui.pushButtonConnectSerial.setText("Connect")
+
+    def dms_to_decimal(self):
+        dms = self.latitude
+        direction = self.latDir  # Extract the direction (N/S/E/W)
+        degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
+        decimal_degrees = degrees + (minutes / 60)
+
+        if direction in ('S', 'W'):
+            decimal_degrees *= -1
+
+        self.latitudeConv = decimal_degrees
+
+        dms = self.longitudeConv
+        direction = self.lonDir  # Extract the direction (N/S/E/W)
+        degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
+        decimal_degrees = degrees + (minutes / 60)
+
+        if direction in ('S', 'W'):
+            decimal_degrees *= -1
+
+        self.latitudeConv = decimal_degrees
 
     def readSerialData(self):
         while True:
@@ -320,9 +341,7 @@ class MainWindow(QMainWindow):
                 packet = self.serialInst.readline()
                 dataString = packet.decode('utf')
                 print(dataString)
-                if dataString[0:11] != '{"fix":true':
-                    # print("Waiting to stabilise")
-                    print(dataString)
+
 
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
@@ -331,6 +350,8 @@ class MainWindow(QMainWindow):
                     # Extract the required values
                     self.latitude = str(dataDict['latitude'])
                     self.longitude = str(dataDict['longitude'])
+                    self.latDir = dataDict['latDir']
+                    self.lonDir = dataDict['lonDir']
                     altitude = dataDict['altitude']
                     speed = dataDict['speed']
                     angle = dataDict['angle']
