@@ -13,19 +13,11 @@ from urllib.request import urlopen
 from PySide6.QtCore import Qt, QCoreApplication
 from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
 
-"""
-     TODO:
-     1. Add Splash screen that runs while the app is loading (might not need it as app loads up pretty fast)
-     2. Add a loading screen that runs while the connection to GPS module is fixing itself
-     3. Add a leaflet map (watch that superhero thingy on youtube)
-     4. 
-"""
-
 
 class MainWindow(QMainWindow):
 
     # initialise the window with all widgets
-    def __init__(self):
+    def __init__(self, version):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
         self.lonDir = None
@@ -71,6 +63,7 @@ class MainWindow(QMainWindow):
         # Start window at Login page
         self.ui.stackedWidgetMain.setCurrentIndex(0)
         self.ui.labelLoginError.setText("")
+        self.ui.labelVersion.setText(version)
 
         # Start assigning functions to login page widgets here
         self.ui.pushButtonLogin.clicked.connect(self.logUserIn)
@@ -401,6 +394,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MainWindow()
+    currentVersion = "AvASys v1.2.2"
+    window = MainWindow(version=currentVersion)
     window.show()
     sys.exit(app.exec())

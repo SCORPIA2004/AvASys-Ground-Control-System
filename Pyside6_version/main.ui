@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AvASys v1.2</string>
+   <string>AvASys Controller</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -703,7 +703,7 @@ QTextEdit {
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/img/logoSmall.png&quot; width=&quot;144&quot; height=&quot;24&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_11">
+    <widget class="QLabel" name="labelVersion">
      <property name="geometry">
       <rect>
        <x>20</x>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainFPFyrU.ui'
+## Form generated from reading UI file 'mainBKHHQe.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -330,13 +330,13 @@ class Ui_MainWindow(object):
         self.label_10.setObjectName(u"label_10")
         self.label_10.setGeometry(QRect(427, 10, 144, 24))
         self.label_10.setMaximumSize(QSize(288, 50))
-        self.labelVersionTitle = QLabel(self.frameHeader)
-        self.labelVersionTitle.setObjectName(u"labelVersionTitle")
-        self.labelVersionTitle.setGeometry(QRect(20, 10, 281, 21))
+        self.labelVersion = QLabel(self.frameHeader)
+        self.labelVersion.setObjectName(u"labelVersion")
+        self.labelVersion.setGeometry(QRect(20, 10, 281, 21))
         font = QFont()
         font.setFamilies([u"Roboto"])
-        self.labelVersionTitle.setFont(font)
-        self.labelVersionTitle.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
+        self.labelVersion.setFont(font)
+        self.labelVersion.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
         self.pushButtonExit = QPushButton(self.frameHeader)
         self.pushButtonExit.setObjectName(u"pushButtonExit")
         self.pushButtonExit.setGeometry(QRect(970, 0, 31, 30))
@@ -383,7 +383,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys v1.2.2", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AvASys Controller", None))
         self.pushButtonLogin.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.lineEditPassword.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Password", None))
         self.labelLoginError.setText(QCoreApplication.translate("MainWindow", u"Incorrect Username/Password", None))
@@ -424,7 +424,7 @@ class Ui_MainWindow(object):
         self.pushButtonSignupNew.setText(QCoreApplication.translate("MainWindow", u"Sign up", None))
         self.pushButtonBackToLogin.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><img src=\":/newPrefix/img/logoSmall.png\" width=\"144\" height=\"24\"></p></body></html>", None))
-        self.labelVersionTitle.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.2</span></p></body></html>", None))
+        self.labelVersion.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt; font-weight:700;\">AvASys v1.2.1</span></p></body></html>", None))
         self.pushButtonExit.setText("")
         self.pushButtonMinimise.setText("")
     # retranslateUi
