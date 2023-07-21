@@ -20,6 +20,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         # Initialising the window geometry
         super(MainWindow, self).__init__()
+        self.lonDir = None
+        self.latDir = None
         self.longitudeConv = None
         self.latitudeConv = None
         self.serialThread = None
@@ -306,6 +308,7 @@ class MainWindow(QMainWindow):
                 self.serialInst.baudrate = self.selectedBaud
 
                 # Start a new thread for reading from the serial port
+
                 self.serialThread = threading.Thread(target=self.readSerialData)
                 self.serialThread.start()
                 self.ui.pushButtonConnectSerial.setText("Disconnect")
@@ -315,23 +318,15 @@ class MainWindow(QMainWindow):
             self.ui.pushButtonConnectSerial.setText("Connect")
 
     def dms_to_decimal(self):
-        dms = self.latitude
-        direction = self.latDir  # Extract the direction (N/S/E/W)
+        dms = self.latitude * self.latDir
         degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
         decimal_degrees = degrees + (minutes / 60)
-
-        if direction in ('S', 'W'):
-            decimal_degrees *= -1
 
         self.latitudeConv = decimal_degrees
 
-        dms = self.longitudeConv
-        direction = self.lonDir  # Extract the direction (N/S/E/W)
+        dms = self.longitudeConv * self.lonDir
         degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
         decimal_degrees = degrees + (minutes / 60)
-
-        if direction in ('S', 'W'):
-            decimal_degrees *= -1
 
         self.latitudeConv = decimal_degrees
 
@@ -345,32 +340,36 @@ class MainWindow(QMainWindow):
 
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
-                    dataDict = json.loads(dataString)
+                    try:
 
-                    # Extract the required values
-                    self.latitude = str(dataDict['latitude'])
-                    self.longitude = str(dataDict['longitude'])
-                    self.latDir = dataDict['latDir']
-                    self.lonDir = dataDict['lonDir']
-                    altitude = dataDict['altitude']
-                    speed = dataDict['speed']
-                    angle = dataDict['angle']
+                        dataDict = json.loads(dataString)
 
-                    # Update the GUI
-                    self.ui.labelPlaneStats.setText(f"{self.latitudeConv}\n\n{self.longitudeConv}\n\n{altitude}\n\n{speed}\n\n{angle}")
+                        # Extract the required values
+                        self.latitude = str(dataDict['latitude'])
+                        self.longitude = str(dataDict['longitude'])
+                        self.latDir = dataDict['latDir']
+                        self.lonDir = dataDict['lonDir']
+                        altitude = dataDict['altitude']
+                        speed = dataDict['speed']
+                        angle = dataDict['angle']
 
-                    # Update the plane marker's position
-                    # TODO: 1. Why is lat/lon conversion not working?
-                    #       2. Why is the marker not updating on map (re-rendering needed?) ?
-                    # convert to normal lon/lat
-                    decimalPlaces = 4
-                    self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
-                    self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
+                        # Update the GUI
+                        self.ui.labelPlaneStats.setText(f"{self.latitudeConv}\n\n{self.longitudeConv}\n\n{altitude}\n\n{speed}\n\n{angle}")
 
-                    self.coordinate = (self.latitudeConv, self.longitudeConv)
-                    # print("new coordinates received: ", self.coordinate)
-                    self.addPlaneMarker()
-                    self.m.save("testing.html")
+                        # Update the plane marker's position
+                        # TODO: 1. Why is lat/lon conversion not working?
+                        #       2. Why is the marker not updating on map (re-rendering needed?) ?
+                        # convert to normal lon/lat
+                        decimalPlaces = 4
+                        self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
+                        self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
+
+                        self.coordinate = (self.latitudeConv, self.longitudeConv)
+                        # print("new coordinates received: ", self.coordinate)
+                        self.addPlaneMarker()
+                        self.m.save("testing.html")
+                    except json.decoder.JSONDecodeError as e:
+                        print("Error while parsing JSON data:", e)
 
     def updateComPorts(self):
         # Clear the current items in the QComboBox

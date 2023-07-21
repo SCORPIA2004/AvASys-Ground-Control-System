@@ -103,9 +103,9 @@ void loop()                     // run over and over again
     Serial.print(" quality: "); Serial.println((int)GPS.fixquality);*/
     if (GPS.fix) {
       float latitude = GPS.latitude;
-      char latDir = GPS.lat;
+      int latDir = (GPS.lat == 'N' ? 1 : -1);
       float longitude = GPS.longitude;
-      char lonDir = GPS.lon;
+      int lonDir = (GPS.lon == 'E' ? 1 : -1);
       float speed = GPS.speed;
       float angle = GPS.angle;
       float altitude = GPS.altitude;
