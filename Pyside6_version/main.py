@@ -3,6 +3,8 @@ import io
 import sys
 import csv
 import json
+import time
+
 import folium
 import os.path
 import threading
@@ -62,6 +64,7 @@ class MainWindow(QMainWindow):
 
         # Start window at Login page
         self.ui.stackedWidgetMain.setCurrentIndex(0)
+        # self.ui.stackedWidgetMain.setCurrentIndex(0)
         self.ui.labelLoginError.setText("")
 
         # Start assigning functions to login page widgets here
@@ -294,8 +297,6 @@ class MainWindow(QMainWindow):
     def removeMarker(self):
         self.markerLayer.get_root().remove_child(self.planeMarker)
 
-
-
     def connectSerial(self):
         print("Testing serial com ports")
         if self.ui.pushButtonConnectSerial.text() == "Connect":
@@ -317,7 +318,7 @@ class MainWindow(QMainWindow):
                 self.serialInst.close()
             self.ui.pushButtonConnectSerial.setText("Connect")
 
-    def dms_to_decimal(self):
+    def convLatLon(self):
         dms = self.latitude * self.latDir
         # 4042.6142
         degrees = int(dms / 100)        #40
@@ -367,7 +368,7 @@ class MainWindow(QMainWindow):
 
 
                         # convert to normal lon/lat
-                        self.dms_to_decimal()
+                        self.convLatLon()
                         self.coordinate = (self.latitudeConv, self.longitudeConv)
                         # print("new coordinates received: ", self.coordinate)
                         self.addPlaneMarker()
