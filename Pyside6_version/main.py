@@ -15,6 +15,14 @@ from urllib.request import urlopen
 from PySide6.QtCore import Qt, QCoreApplication
 from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
 
+"""
+     TODO:
+     1. Add Splash screen that runs while the app is loading (might not need it as app loads up pretty fast)
+     2. Add a loading screen that runs while the connection to GPS module is fixing itself
+     3. Add a leaflet map (watch that superhero thingy on youtube)
+     4. 
+"""
+
 
 class MainWindow(QMainWindow):
 
