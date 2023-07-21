@@ -319,16 +319,21 @@ class MainWindow(QMainWindow):
 
     def dms_to_decimal(self):
         dms = self.latitude * self.latDir
-        degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
-        decimal_degrees = degrees + (minutes / 60)
+        # 4042.6142
+        degrees = int(dms / 100)        #40
+        minutes = dms - (degrees * 100) #42.6142
+        seconds = (minutes - int(minutes)) * 60 #36.852
+        minutes = int(minutes) #42
 
-        self.latitudeConv = decimal_degrees
+        self.latitudeConv = round(degrees + (minutes / 60) + (seconds / 3600), 4)
 
-        dms = self.longitudeConv * self.lonDir
-        degrees, minutes = divmod(float(dms[:-1]), 100)  # Split degrees and minutes
-        decimal_degrees = degrees + (minutes / 60)
+        dms = self.longitude * self.lonDir
+        degrees = int(dms / 100)        #40
+        minutes = dms - (degrees * 100) #42.6142
+        seconds = (minutes - int(minutes)) * 60 #36.852
+        minutes = int(minutes) #42
 
-        self.latitudeConv = decimal_degrees
+        self.longitudeConv = round(degrees + (minutes / 60) + (seconds / 3600), 4)
 
     def readSerialData(self):
         while True:
@@ -345,8 +350,8 @@ class MainWindow(QMainWindow):
                         dataDict = json.loads(dataString)
 
                         # Extract the required values
-                        self.latitude = str(dataDict['latitude'])
-                        self.longitude = str(dataDict['longitude'])
+                        self.latitude = float(dataDict['latitude'])
+                        self.longitude = float(dataDict['longitude'])
                         self.latDir = dataDict['latDir']
                         self.lonDir = dataDict['lonDir']
                         altitude = dataDict['altitude']
@@ -356,14 +361,13 @@ class MainWindow(QMainWindow):
                         # Update the GUI
                         self.ui.labelPlaneStats.setText(f"{self.latitudeConv}\n\n{self.longitudeConv}\n\n{altitude}\n\n{speed}\n\n{angle}")
 
-                        # Update the plane marker's position
-                        # TODO: 1. Why is lat/lon conversion not working?
-                        #       2. Why is the marker not updating on map (re-rendering needed?) ?
-                        # convert to normal lon/lat
-                        decimalPlaces = 4
-                        self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
-                        self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
+                        # decimalPlaces = 4
+                        # self.latitudeConv = round(float(self.latitude[0:2]) + float(self.latitude[2:]) / 100, decimalPlaces)
+                        # self.longitudeConv = round(float(self.longitude[0:2]) + float(self.longitude[2:]) / 100, decimalPlaces)
 
+
+                        # convert to normal lon/lat
+                        self.dms_to_decimal()
                         self.coordinate = (self.latitudeConv, self.longitudeConv)
                         # print("new coordinates received: ", self.coordinate)
                         self.addPlaneMarker()
