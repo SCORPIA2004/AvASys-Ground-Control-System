@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainBKHHQe.ui'
+## Form generated from reading UI file 'mainqZzRTC.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -163,15 +163,17 @@ class Ui_MainWindow(object):
         self.tabWidget = QTabWidget(self.page_3)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setGeometry(QRect(10, 230, 251, 251))
-        self.tabWidget.setStyleSheet(u"")
+        self.tabWidget.setStyleSheet(u"color: black;")
         self.stats = QWidget()
         self.stats.setObjectName(u"stats")
         self.labelPlaneStatsDisplay = QLabel(self.stats)
         self.labelPlaneStatsDisplay.setObjectName(u"labelPlaneStatsDisplay")
         self.labelPlaneStatsDisplay.setGeometry(QRect(10, 10, 141, 201))
+        self.labelPlaneStatsDisplay.setStyleSheet(u"color: white;")
         self.labelPlaneStats = QLabel(self.stats)
         self.labelPlaneStats.setObjectName(u"labelPlaneStats")
         self.labelPlaneStats.setGeometry(QRect(160, 10, 81, 201))
+        self.labelPlaneStats.setStyleSheet(u"color: white;")
         self.labelPlaneStats.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.labelPlaneStats.setMargin(10)
         self.tabWidget.addTab(self.stats, "")
@@ -404,7 +406,7 @@ class Ui_MainWindow(object):
 "<p><span style=\" font-size:11pt;\">0</span></p>\n"
 "</body>\n"
 "</html>", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.stats), QCoreApplication.translate("MainWindow", u"stats", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.stats), QCoreApplication.translate("MainWindow", u"Stats", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Other", None))
         self.pushButtonMinimiseStats.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Flight data page", None))
