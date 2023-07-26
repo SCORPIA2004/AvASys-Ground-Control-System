@@ -74,6 +74,7 @@ class MainWindow(QMainWindow):
         self.ui.lineEditUsernameNew.textChanged.connect(self.setUsername)
         self.ui.lineEditPasswordNew.textChanged.connect(self.setPassword)
         self.ui.lineEditEmailNew.textChanged.connect(self.setEmail)
+        self.ui.pushButtonBackToLogin.clicked.connect(self.backToLogin)
         self.ui.pushButtonExit.clicked.connect(self.exitApp)
         self.ui.pushButtonMinimise.clicked.connect(self.minimise)
         self.ui.frameHeader.mouseMoveEvent = self.moveWindow
@@ -82,7 +83,7 @@ class MainWindow(QMainWindow):
         self.ui.comboBoxCom.currentIndexChanged.connect(self.setPortFromComboBox)
         self.ui.comboBoxBaudrate.currentIndexChanged.connect(self.setBaudFromComboBox)
         self.ui.labelPlaneStatsDisplay.setText("Latitude:\n\nLongitude:\n\nAltitude:\n\nGroundspeed(m/s):\n\nAngle (deg):")
-        self.ui.labelPlaneStats.setText("0\n\n0\n\n0\n\n0\n\n0")
+        self.ui.labelPlaneStats.setText("N/A\n\nN/A\n\nN/A\n\nN/A\n\nN/A")
 
         # start assigning functions to menu page widgets here
         self.ui.pushButtonFlightData.clicked.connect(self.gotoFlightDataPage)
@@ -228,6 +229,8 @@ class MainWindow(QMainWindow):
         # displays map on webEngineViewMap widget in window
         self.ui.webEngineViewMap.setHtml(htmlContent)
 
+    def backToLogin(self):
+        self.ui.stackedWidgetMain.setCurrentIndex(0)
     def gotoFlightDataPage(self):
         self.ui.stackedWidgetMenu.setCurrentIndex(0)
 
