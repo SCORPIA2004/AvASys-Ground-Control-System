@@ -315,7 +315,6 @@ class MainWindow(QMainWindow):
 
                 self.serialThread = threading.Thread(target=self.readSerialData)
                 self.serialThread.start()
-                self.ui.pushButtonConnectSerial.setText("Disconnect")
         else:
             if self.serialInst.isOpen():
                 self.serialInst.close()
@@ -341,14 +340,22 @@ class MainWindow(QMainWindow):
 
     def readSerialData(self):
         while True:
+            self.ui.pushButtonConnectSerial.setText("Waiting...")
             if self.serialInst.in_waiting:
                 packet = self.serialInst.readline()
                 dataString = packet.decode('utf')
                 print(dataString)
 
+                self.ui.pushButtonConnectSerial.setEnabled(False)
+
+
 
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
+                    if(self.ui.pushButtonConnectSerial.text() == "Waiting..."):
+                        self.ui.pushButtonConnectSerial.setText("Disconnect")
+                        self.ui.pushButtonConnectSerial.setEnabled(True)
+
                     try:
 
                         dataDict = json.loads(dataString)
