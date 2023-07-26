@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainqZzRTC.ui'
+## Form generated from reading UI file 'mainduqbFF.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -162,7 +162,7 @@ class Ui_MainWindow(object):
         self.pushButtonCurrentLocation.setStyleSheet(u"font-size: 30px")
         self.tabWidget = QTabWidget(self.page_3)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(10, 230, 251, 251))
+        self.tabWidget.setGeometry(QRect(10, 211, 251, 251))
         self.tabWidget.setStyleSheet(u"color: black;")
         self.stats = QWidget()
         self.stats.setObjectName(u"stats")
@@ -182,7 +182,7 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_2, "")
         self.pushButtonMinimiseStats = QPushButton(self.page_3)
         self.pushButtonMinimiseStats.setObjectName(u"pushButtonMinimiseStats")
-        self.pushButtonMinimiseStats.setGeometry(QRect(10, 479, 31, 31))
+        self.pushButtonMinimiseStats.setGeometry(QRect(10, 460, 31, 31))
         self.stackedWidgetMenu.addWidget(self.page_3)
         self.page_1 = QWidget()
         self.page_1.setObjectName(u"page_1")
@@ -343,7 +343,7 @@ class Ui_MainWindow(object):
         self.pushButtonExit.setObjectName(u"pushButtonExit")
         self.pushButtonExit.setGeometry(QRect(970, 0, 31, 30))
         self.pushButtonExit.setAutoFillBackground(False)
-        self.pushButtonExit.setStyleSheet(u"color: #222222;")
+        self.pushButtonExit.setStyleSheet(u"background-color: #222222;")
         icon1 = QIcon()
         icon1.addFile(u"img/exit.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButtonExit.setIcon(icon1)
@@ -352,7 +352,7 @@ class Ui_MainWindow(object):
         self.pushButtonMinimise.setObjectName(u"pushButtonMinimise")
         self.pushButtonMinimise.setGeometry(QRect(940, 0, 31, 30))
         self.pushButtonMinimise.setAutoFillBackground(False)
-        self.pushButtonMinimise.setStyleSheet(u"color: #222222;")
+        self.pushButtonMinimise.setStyleSheet(u"background-color: #222222;")
         icon2 = QIcon()
         icon2.addFile(u"img/minimize-window-32.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButtonMinimise.setIcon(icon2)

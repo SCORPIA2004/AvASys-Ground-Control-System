@@ -85,6 +85,8 @@ class MainWindow(QMainWindow):
         self.ui.labelPlaneStatsDisplay.setText("Latitude:\n\nLongitude:\n\nAltitude:\n\nGroundspeed(m/s):\n\nAngle (deg):")
         self.ui.labelPlaneStats.setText("N/A\n\nN/A\n\nN/A\n\nN/A\n\nN/A")
 
+        self.ui.pushButtonCurrentLocation.hide()
+
         # start assigning functions to menu page widgets here
         self.ui.pushButtonFlightData.clicked.connect(self.gotoFlightDataPage)
         self.ui.pushButtonSetup.clicked.connect(self.gotoSetupPage)
@@ -339,17 +341,13 @@ class MainWindow(QMainWindow):
         self.longitudeConv = round(degrees + (minutes / 60) + (seconds / 3600), 4)
 
     def readSerialData(self):
+        self.ui.pushButtonConnectSerial.setText("Waiting...")
+        self.ui.pushButtonConnectSerial.setEnabled(False)
         while True:
-            self.ui.pushButtonConnectSerial.setText("Waiting...")
             if self.serialInst.in_waiting:
                 packet = self.serialInst.readline()
                 dataString = packet.decode('utf')
                 print(dataString)
-
-                self.ui.pushButtonConnectSerial.setEnabled(False)
-
-
-
                 # Extract and process data here
                 if dataString[0:11] == '{"fix":true':
                     if(self.ui.pushButtonConnectSerial.text() == "Waiting..."):

@@ -265,7 +265,7 @@ QTextEdit {
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>230</y>
+            <y>211</y>
             <width>251</width>
             <height>251</height>
            </rect>
@@ -278,7 +278,7 @@ QTextEdit {
           </property>
           <widget class="QWidget" name="stats">
            <attribute name="title">
-            <string>stats</string>
+            <string>Stats</string>
            </attribute>
            <widget class="QLabel" name="labelPlaneStatsDisplay">
             <property name="geometry">
@@ -288,6 +288,9 @@ QTextEdit {
               <width>141</width>
               <height>201</height>
              </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
             </property>
             <property name="text">
              <string/>
@@ -301,6 +304,9 @@ QTextEdit {
               <width>81</width>
               <height>201</height>
              </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white;</string>
             </property>
             <property name="text">
              <string>&lt;html&gt;&lt;head/&gt;
@@ -332,7 +338,7 @@ QTextEdit {
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>479</y>
+            <y>460</y>
             <width>31</width>
             <height>31</height>
            </rect>
@@ -738,7 +744,7 @@ QTextEdit {
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #222222;</string>
+      <string notr="true">background-color: #222222;</string>
      </property>
      <property name="text">
       <string/>
@@ -767,7 +773,7 @@ QTextEdit {
       <bool>false</bool>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: #222222;</string>
+      <string notr="true">background-color: #222222;</string>
      </property>
      <property name="text">
       <string/>
