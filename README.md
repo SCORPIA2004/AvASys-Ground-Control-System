@@ -5,4 +5,5 @@ AvASys Ground Control System project made with Pyside6 and using AdaFruit Ultima
 <br>Latest: v1.2.2
 <br>
 <br>
-<a href="./Pyside6_version/v1.2.2.mp4"><img src="v1.2.2.png"></a>
+<img src="v1.2.2.png">
+[![AvASys Ground Control System]({v1.2.2.png})]({v1.2.2.mp4} "AvASys v1.2.2")
