@@ -7,6 +7,8 @@ import folium
 import os.path
 import threading
 import serial.tools.list_ports
+from PySide6 import QtCore
+
 from ui_main import Ui_MainWindow
 from emailSender import sendEmail
 from urllib.request import urlopen
@@ -226,10 +228,22 @@ class MainWindow(QMainWindow):
         # saves map as html
         data = io.BytesIO()
         self.m.save(data, close_file=False)
-        htmlContent = data.getvalue().decode()
+        # htmlContent = data.getvalue().decode()
 
         # displays map on webEngineViewMap widget in window
-        self.ui.webEngineViewMap.setHtml(htmlContent)
+        # self.ui.webEngineViewMap.setHtml(htmlContent)
+
+        # Load the HTML template into the QWebEngineView widget
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        print(current_dir)
+
+        html_path = os.path.join(current_dir, "testing.html")
+        print(html_path)
+        with open(html_path, "r") as f:
+            HTML_TEMPLATE = f.read()
+
+        # Rest of the code remains unchanged
+        self.ui.webEngineViewMap.setHtml(HTML_TEMPLATE)
 
     def backToLogin(self):
         self.ui.stackedWidgetMain.setCurrentIndex(0)
@@ -290,6 +304,9 @@ class MainWindow(QMainWindow):
         self.serialInst.baudrate = self.selectedBaud
 
     def addPlaneMarker(self):
+        if self.planeMarker is not None:
+            self.removeMarker()
+
         self.planeMarker = folium.Marker(
             location=self.coordinate,
             popup="Plane " + str(self.coordinate),
@@ -299,7 +316,6 @@ class MainWindow(QMainWindow):
 
     def removeMarker(self):
         self.markerLayer.get_root().remove_child(self.planeMarker)
-
 
 
     def connectSerial(self):
@@ -314,7 +330,6 @@ class MainWindow(QMainWindow):
                 self.serialInst.baudrate = self.selectedBaud
 
                 # Start a new thread for reading from the serial port
-
                 self.serialThread = threading.Thread(target=self.readSerialData)
                 self.serialThread.start()
         else:
