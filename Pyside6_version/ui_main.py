@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainduqbFF.ui'
+## Form generated from reading UI file 'mainbNkLau.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.4.2
 ##
@@ -188,7 +188,10 @@ class Ui_MainWindow(object):
         self.page_1.setObjectName(u"page_1")
         self.label_3 = QLabel(self.page_1)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(410, 200, 121, 21))
+        self.label_3.setGeometry(QRect(430, 20, 121, 21))
+        self.plot = QWidget(self.page_1)
+        self.plot.setObjectName(u"plot")
+        self.plot.setGeometry(QRect(10, 50, 961, 431))
         self.stackedWidgetMenu.addWidget(self.page_1)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
@@ -377,7 +380,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidgetMain.setCurrentIndex(1)
-        self.stackedWidgetMenu.setCurrentIndex(0)
+        self.stackedWidgetMenu.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(0)
 
 

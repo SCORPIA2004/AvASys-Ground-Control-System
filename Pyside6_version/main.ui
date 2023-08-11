@@ -227,7 +227,7 @@ QTextEdit {
       <item row="2" column="0" colspan="8">
        <widget class="QStackedWidget" name="stackedWidgetMenu">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="page_3">
          <widget class="QWebEngineView" name="webEngineViewMap">
@@ -352,14 +352,24 @@ QTextEdit {
          <widget class="QLabel" name="label_3">
           <property name="geometry">
            <rect>
-            <x>410</x>
-            <y>200</y>
+            <x>430</x>
+            <y>20</y>
             <width>121</width>
             <height>21</height>
            </rect>
           </property>
           <property name="text">
            <string>Flight data page</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="plot" native="true">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>50</y>
+            <width>961</width>
+            <height>431</height>
+           </rect>
           </property>
          </widget>
         </widget>

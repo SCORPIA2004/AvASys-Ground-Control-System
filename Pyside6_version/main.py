@@ -99,6 +99,10 @@ class MainWindow(QMainWindow):
         self.ui.pushButtonMinimiseStats.clicked.connect(self.minimiseStats)
         self.ui.pushButtonSignOut.clicked.connect(self.signOut)
 
+
+        # start assigning functions to flight data page widgets here
+
+
     def logUserIn(self):
         if not os.path.exists('credentials.csv'):
             # create credentials.csv
@@ -414,6 +418,12 @@ class MainWindow(QMainWindow):
         else:
             # Add the COM ports to the QComboBox
             self.ui.comboBoxCom.addItems(comPorts)
+
+    def plotFlightData(self):
+        # Todo: Plot the flight data on a plot
+        print("Todo: Plot the flight data on a plot")
+
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
